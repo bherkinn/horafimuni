@@ -1,5 +1,5 @@
 <?php 
-	usleep(500000);
+	usleep(600000);
 
 	function Cargar($curso){
 
@@ -35,7 +35,7 @@
 			<input type="text" id="txttp<?php echo $indice;?>" spellcheck="false" name="txttp" class="txtform i" value="<?php echo $a->teopra; ?>" disabled>
 		</td>
 
-		<td class="comun" id="aulas-<?php echo $indice; ?>">
+		<td class="comun" id="aulas">
 			<center>
 				<select id="select-aulas<?php echo $indice;?>" class="select-aulas title-aulas" disabled=>
 
@@ -71,7 +71,7 @@
 				</select>
 			</center>
 		</td>
-		<td class="comun docentes-<?php echo $indice; ?>">
+		<td class="comun" id="docentes">
 			<center>
 				<select id="select-docentes<?php echo $indice;?>" class="select-docentes" disabled>
 					<?php 
@@ -129,31 +129,104 @@
 	?>
 	<script type="text/javascript">
 
+		var cursorstatic;
+		var combo=0;
+		var permiso;
+		var fila;
+
+
 		$(document).ready(function(){
-			$("tr").click(function(){
-			if($(this).attr("id"))
+			$("tr").hover(function(){	
+				idcursor=$(this).attr("id");
+					$("#"+idcursor).click(function(){
+					console.log(idcursor);
+							
+							if(permiso==1)
+							{
+								combo=0;
+							}
+							
+							
+
+							if(fila==idcursor)
+							{
+								
+							}
+							else
+							{
+								if(disponible==0)
+								{
+									salir(cursorstatic);
+								}	
+								cursorstatic=idcursor;
+								editar(idcursor);
+								fila=cursorstatic;
+								disponible=0;
+							}
+							
+
+							$("#select-aulas"+cursorstatic).change(function(){
+								combo=0;
+
+							});
+
+							$("#select-docentes"+cursorstatic).change(function(){
+								combo=0;
+							});
+
+
+					});
+
+			});
+
+		});
+
+
+		$(document).ready(function(){
+
+			$("td").click(function(){
+							var nombre=$(this).attr("id");
+							if(nombre=="docentes")
+							{
+								combo=1;
+								permiso=0;
+							}
+							else
+							{
+								permiso=0;
+							}
+
+							if(nombre=="aulas")
+							{
+								combo=1;
+								permiso=0;
+							}
+							else
+							{
+								permiso=0;
+							}
+
+							console.log("td disponible ="+disponible);
+							console.log("td combo ="+combo);
+						});
+			
+			$("#tabla").hover(function(){
 				{	
-					if(disponible==1)
-					{
-						idcursor=$(this).attr("id");
-						disponible=0;
-						editar(idcursor);
-						
-					}
+						if(combo==0)
+						{
+							salir(cursorstatic);
+							fila=null;
+						}
+						else
+						{
+							console.log("disponible ="+disponible);
+							console.log("combo ="+combo);
+						}
+					
 				}
 			});
-		});
 
-		$(document).ready(function(){
-			$("tr").mouseleave(function(){
-				if($(this).attr("id")==idcursor)
-				{
-					salir(idcursor);
-					disponible=1;
-				}
-			});
 		});
-
 
 
 		

@@ -1,8 +1,7 @@
 var medida;
 var disponible=1;
-var cerrado="";
+var cerrado="no";
 var idcursor;
-
 
 $(document).ready(function(){
 
@@ -63,10 +62,19 @@ $(window).resize(function(){
 	}
 });
 
-
 $(document).ready(function(){
-	$("#tabla").load('anexos/tabla.php');
+	$("#tabla").html('<center><img style="height:80px;" src="librerias/img/cargando.gif"/></center>').fadeIn();
+	$.post("anexos/tabla.php",{curso:'MB146'},
+				function(data){
+					$("#tabla").css({"display":"none"});
+					$("#tabla").html(data).fadeIn();
+			});
 });
+
+
+// $(document).ready(function(){
+// 	$("#tabla").load('anexos/tabla.php');
+// });
 
 $(document).ready(function(){
 	$("#select-cursos").change(function(){
@@ -85,11 +93,11 @@ $(document).ready(function(){
 	
 });
 
+
 function editar(indice){
 
-
 	 		$("#txtdia"+indice).prop("disabled", false);
-	 		$("#txtdia"+indice).focus();
+	 		// $("#txtdia"+indice).focus();
 	 		$("#txtdia"+indice).addClass('form-control');
 	 		$("#txtdia"+indice).removeClass('i');  
 	 								 

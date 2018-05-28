@@ -4,6 +4,7 @@
  ?>
  <center>
  <div class="container-fluid col-lg-12">
+ <div id="exterior" style="width: 100%; height: 100%;">
  <table class="tabla-base table-responsive border rounded table-hover">
 		<thead class="table-success">
 			<th class="titulo-dia">DIA</th>
@@ -34,10 +35,10 @@
 					Cargar($curso);
 
 				}
-				else {
-					$curso="MB146";
-					Cargar($curso);
-				}	
+				// else {
+				// 	$curso="MB146";
+				// 	Cargar($curso);
+				// }	
 		 ?>
 
 		<tr>
@@ -152,6 +153,7 @@
 		</tr>	
 
 </table>
+</div>
 
 <!-- <div class="reducir-opciones col-sm-2 col-md-2 col-lg-1">								
 		<table class="table-opciones" >
@@ -185,6 +187,7 @@
 
 		});
 	});
+
 	$(document).ready(function(){
 		$(".select-aulas").select2({
 			width: '120px',
