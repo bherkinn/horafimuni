@@ -2,6 +2,13 @@ var medida;
 var disponible=1;
 var cerrado="no";
 var idcursor;
+var indicefila;
+
+$(document).ready(function(){
+				$("#select-cursos").select2({
+					 width: '240px',
+				});
+			});
 
 $(document).ready(function(){
 
@@ -16,7 +23,7 @@ $(document).ready(function(){
 	}
 	else{
 		$("#select-cursos").select2({
-				width: '500px'
+				width: '400px'
 		});
 	}
 });
@@ -26,18 +33,26 @@ $(window).resize(function(){
 		if ($(window).width()<=1200)
 		{
 			$("#tabla-acomodar").addClass("col-sm-12");
+			$("#tablas-extras").removeClass("container")
+			$("#tablas-extras").addClass("container-fluid");
 		}
 		else{
 			$("#tabla-acomodar").removeClass("col-sm-12");	
+			$("#tablas-extras").removeClass("container-fluid")
+			$("#tablas-extras").addClass("container");
 		}
 });
 $(window).ready(function(){
 		if ($(window).width()<=1200)
 		{
 			$("#tabla-acomodar").addClass("col-sm-12");
+			$("#tablas-extras").removeClass("container")
+			$("#tablas-extras").addClass("container-fluid");
 		}
 		else{
 			$("#tabla-acomodar").removeClass("col-sm-12");	
+			$("#tablas-extras").removeClass("container-fluid")
+			$("#tablas-extras").addClass("container");
 		}
 });
 
@@ -55,7 +70,7 @@ $(window).resize(function(){
 		}
 		else{
 			$("#select-cursos").select2({
-					width: '480px'
+					width: '400px'
 			});
 		}
 		medida=$(window).width();
@@ -80,12 +95,12 @@ $(document).ready(function(){
 	$("#select-cursos").change(function(){
 		$("#select-cursos option:selected").each(function(){
 			$("#tabla").css({"display":"none"});
-			$("#tabla").html('<center><img style="height:80px;" src="librerias/img/cargando.gif"/></center>').fadeIn();
+			$("#tabla").html('<center><img id="cargando" style="height:80px;" src="librerias/img/cargando.gif"/></center>').fadeIn();
 			curso=$(this).val();
 			disponible=1;
 			$.post("anexos/tabla.php",{curso:curso},
 				function(data){
-					$("#tabla").css({"display":"none"});
+					// $("#tabla").css({"display":"none"});
 					$("#tabla").html(data).fadeIn();
 			});
 		})
@@ -224,6 +239,8 @@ function editar(indice){
 
 function salir(indice){
 
+					actualizar(indice);
+
 					$("#txtdia"+indice).prop("disabled", true);
 	 				$("#txtdia"+indice).addClass('i');
 	 				$("#txtdia"+indice).removeClass('form-control');  
@@ -284,6 +301,8 @@ function salir(indice){
 	 				$("#txtc10"+indice).prop("disabled", true);
 	 				$("#txtc10"+indice).addClass('i');
 	 				$("#txtc10"+indice).removeClass('form-control');
+
+	 				
 } 
 
 function guardar(){
@@ -326,6 +345,45 @@ function guardar(){
 
 	 		});
 	 	}
+
+function actualizar(indice){
+
+	 		var datos = new FormData();
+	 		datos.append("txtdia",$("#txtdia"+indice).val());
+	 		datos.append("txthora",$("#txthora"+indice).val());
+	 		datos.append("txtcurso",$("#txtcurso"+indice).val());
+	 		datos.append("txtseccion",$("#txtseccion"+indice).val());
+	 		datos.append("txttp",$("#txttp"+indice).val());
+	 		datos.append("cboaula",$("#select-aulas"+indice).val());
+	 		datos.append("cbodocente",$("#select-docentes"+indice).val());
+	 		datos.append("txtc1",$("#txtc1"+indice).val());
+	 		datos.append("txtc2",$("#txtc2"+indice).val());
+	 		datos.append("txtc3",$("#txtc3"+indice).val());
+	 		datos.append("txtc4",$("#txtc4"+indice).val());
+	 		datos.append("txtc5",$("#txtc5"+indice).val());
+	 		datos.append("txtc6",$("#txtc6"+indice).val());
+	 		datos.append("txtc7",$("#txtc7"+indice).val());
+	 		datos.append("txtc8",$("#txtc8"+indice).val());
+	 		datos.append("txtc9",$("#txtc9"+indice).val());
+	 		datos.append("txtc10",$("#txtc10"+indice).val());
+	 		datos.append("id",indice);
+
+	 		$.ajax({
+
+	 			type:"POST",
+	 			data:datos,
+	 			url:"anexos/actualizar.php",
+	 			contentType: false,
+	 			processData: false,
+	 			success:function(resultado)
+	 			{
+	 				console.log($("#select-docentes"+indice).val());
+	 				$("#auxiliar").html(resultado);
+	 			}
+
+	 		});
+	 	}
+
 
 
 

@@ -5,7 +5,7 @@
 
 		require_once("../models/conexion.php");
 		$u=new Conexion();
-		$datos=$u->Cargas($curso);
+		$datos=$u->Cargas($curso);	
 
 		foreach($datos as $a)
 		{
@@ -36,8 +36,8 @@
 		</td>
 
 		<td class="comun" id="aulas">
-			<center>
-				<select id="select-aulas<?php echo $indice;?>" class="select-aulas title-aulas" disabled=>
+			
+				<select id="select-aulas<?php echo $indice;?>" class="select-aulas cboaulas" disabled>
 
 					<?php 
 						$u->Open(2);
@@ -69,18 +69,18 @@
 					?> 
 
 				</select>
-			</center>
+			
 		</td>
 		<td class="comun" id="docentes">
-			<center>
-				<select id="select-docentes<?php echo $indice;?>" class="select-docentes" disabled>
+			
+				<select id="select-docentes<?php echo $indice;?>" class="select-docentes cbodocentes" disabled>
 					<?php 
 						$u->Open(2);
 						$tabla=$u->Mostrar("docentes","apePaterno",2);
 						foreach($tabla as $e)
 						{
 					?>	
-						<option value="<?php $e->codDocente; ?>" <?php if($e->codDocente==$a->codDocente):echo "selected"; endif ?> >
+						<option value="<?php echo $e->codDocente; ?>" <?php if($e->codDocente==$a->codDocente):echo "selected"; endif ?> >
 							<?php echo $e->apePaterno." ".$e->apeMaterno.", ".$e->nombres; ?>
 						</option>
 					<?php  
@@ -88,7 +88,7 @@
 						$u->Close(2);	
 					?>
 				</select>
-			</center>
+			
 		</td>
 		<td class="comun">
 			<input type="text" name="txtc1" id="txtc1<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c1 ?>" disabled>
@@ -129,104 +129,191 @@
 	?>
 	<script type="text/javascript">
 
-		var cursorstatic;
-		var combo=0;
-		var permiso;
-		var fila;
+		// var cursorstatic;
+		// var combo=0;
+		// var permiso;
+		// var fila;
+		// var idcursor;
+		// var detener=1;
 
 
-		$(document).ready(function(){
-			$("tr").hover(function(){	
-				idcursor=$(this).attr("id");
-					$("#"+idcursor).click(function(){
-					console.log(idcursor);
-							
-							if(permiso==1)
-							{
-								combo=0;
-							}
-							
-							
 
-							if(fila==idcursor)
-							{
+		
+		// 	$("tr").mouseenter(function(){	
+		// 		idcursor=$(this).attr("id");
+				
+		// 		if(idcursor)
+		// 		{
+		// 		if(detener<=2)
+		// 			{
+		// 				$("#"+idcursor).click(function(){
+		// 				console.log(idcursor);
 								
-							}
-							else
-							{
-								if(disponible==0)
-								{
-									salir(cursorstatic);
-								}	
-								cursorstatic=idcursor;
-								editar(idcursor);
-								fila=cursorstatic;
-								disponible=0;
-							}
-							
+		// 						detener=1;
+		// 						if(permiso==1)
+		// 						{
+		// 							combo=0;
+		// 						}
+								
+								
 
-							$("#select-aulas"+cursorstatic).change(function(){
-								combo=0;
+		// 						if(fila==idcursor)
+		// 						{
+									
+		// 						}
+		// 						else
+		// 						{
+		// 							if(disponible==0)
 
-							});
+		// 							{	
+		// 								salir(cursorstatic);
+		// 							}	
+		// 							cursorstatic=idcursor;
+		// 							editar(idcursor);
+		// 							fila=cursorstatic;
+		// 							disponible=0;
+		// 						}
+								
 
-							$("#select-docentes"+cursorstatic).change(function(){
-								combo=0;
-							});
+		// 					$("#select-aulas"+cursorstatic).change(function(){
+		// 						combo=0;
 
+		// 					});
 
-					});
+		// 					$("#select-docentes"+cursorstatic).change(function(){
+		// 						combo=0;
+		// 					});
+		// 				});
 
-			});
-
-		});
-
-
-		$(document).ready(function(){
-
-			$("td").click(function(){
-							var nombre=$(this).attr("id");
-							if(nombre=="docentes")
-							{
-								combo=1;
-								permiso=0;
-							}
-							else
-							{
-								permiso=0;
-							}
-
-							if(nombre=="aulas")
-							{
-								combo=1;
-								permiso=0;
-							}
-							else
-							{
-								permiso=0;
-							}
-
-							console.log("td disponible ="+disponible);
-							console.log("td combo ="+combo);
-						});
-			
-			$("#tabla").hover(function(){
-				{	
-						if(combo==0)
-						{
-							salir(cursorstatic);
-							fila=null;
-						}
-						else
-						{
-							console.log("disponible ="+disponible);
-							console.log("combo ="+combo);
-						}
+		// 				detener++;
+		// 				}
+		// 			}
+				
+		// 		if(idcursor)
+		// 		{	
+		// 			console.log(idcursor);
+		// 			$("#tabla-docentes").css({"display":"none"});
+		// 			$.post("anexos/mostrar.php",{idfila:idcursor},
+		// 			function(data){
+		// 			$("#tabla-docentes").html(data).fadeIn();
+		// 			send(data);
+		// 			});
+		// 		}
 					
-				}
-			});
 
-		});
+					
+				
+		// 	});
+
+		
+
+		// $(document).ready(function(){
+		// 	$("tr").mouseleave(function(){	
+		// 		idcursor=null;
+		// 	});
+		// });
+
+
+		// $(document).ready(function(){
+
+		// 	$("td").click(function(){
+		// 					var nombre=$(this).attr("id");
+		// 					if(nombre=="docentes")
+		// 					{
+		// 						combo=1;
+		// 						permiso=0;
+		// 					}
+		// 					else
+		// 					{
+		// 						permiso=0;
+		// 					}
+
+		// 					if(nombre=="aulas")
+		// 					{
+		// 						combo=1;
+		// 						permiso=0;
+		// 					}
+		// 					else
+		// 					{
+		// 						permiso=0;
+		// 					}
+
+		// 				});
+			
+		// 	$("#tabla").mouseleave(function(){
+
+		// 		if(cursorstatic)
+		// 		{
+		// 			{	
+		// 					if(combo==0)
+		// 					{
+		// 						salir(cursorstatic);
+		// 						fila=null;
+		// 					}
+		// 					else
+		// 					{
+
+		// 					}
+						
+		// 			}
+		// 		}
+		// 	});
+
+		// });
+
+// **********************************************************************************************************
+
+var idcursor;
+var open="";
+
+$(document).ready(function(){
+	$("tr").click(function(){
+		idcursor=$(this).attr("id");
+
+			
+			if(idcursor)
+			{	
+
+				if(idcursor!=open)
+				{	
+					if(open!="")
+					{
+						salir(open);
+					}		
+					open=idcursor;
+					$.post("anexos/mostrar.php",{idfila:open},
+					function(data){
+					$("#tabla-docentes").html(data).fadeIn();
+					send(data);
+					});		
+					console.log(idcursor);
+					editar(idcursor);
+
+					if(idcursor!=open)
+					{
+
+					}
+
+				}
+				
+			}
+	});
+});
+
+	// $("tr").mouseenter(function(){
+
+	// 	var idhover=$(this).attr("id");
+	// 	if(idhover)
+	// 	{
+	// 		console.log("hover"+idhover);
+	// 		$.post("anexos/mostrar.php",{idfila:idhover},
+	// 		function(data){
+	// 		$("#tabla-docentes").html(data).fadeIn();
+	// 		send(data);
+	// 		});
+	// 	}
+		
+	// });
 
 
 		

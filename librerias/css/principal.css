@@ -11,6 +11,10 @@
 	padding: 1px;
 }
 
+.border{
+	border: 2px solid #656565;
+}
+
 .menu{
 	
 	float: right;
@@ -25,7 +29,8 @@
 	height: 45px;
 }
 .tabla-base{
-	max-width:1018px;
+	max-width:950px;
+
 }
 
 body{
@@ -71,9 +76,6 @@ body{
 }
 
 /* ***************COMBO CURSOS**************** */
-.select-cursos{
-	width: 80%;
-}
 
 .form-control{
 	padding: 0px;
@@ -96,9 +98,9 @@ body{
 .titulo-dia{
 	height: 35px;
 	text-align: center;
-	width: 40px;
-	min-width: 40px;
-	max-width: 40px;
+	width: 32px;
+	min-width: 32px;
+	max-width: 32px;
 }
 .titulo-hora{
 	height: 35px;
@@ -114,10 +116,6 @@ body{
 	min-width: 60px;
 	max-width: 60px
 }
-.titulo-opciones{
-	height: 36px;
-	text-align: center;
-}
 .txtform{
 	padding: 3px;
 	font-size: 12px;
@@ -127,38 +125,56 @@ body{
 .titulo-ciclo{
 	width: 40px;
 	min-width: 40px;
+	max-width: 40px;
 	text-align: center;
 }
 .titulo-docentes{
-	width: 220px;
-	min-width: 220px;
+	width: 200px;
+	min-width: 200px;
+	max-width: 200px;
 	text-align: center;
 }
 .titulo-aulas{
-	width: 120px;
-	min-width: 120px;
+	width: 85px;
+	min-width: 85px;
+	max-width: 85px;
 	text-align: center;
 }
 .titulo-tp{
 	width: 35px;
 	min-width: 35px;
+	max-width: 35px;
 	text-align: center;
 }
-.btn{
-	width: 30px;
-	height: 28px;
-	padding: 0px;
-}
-.tabla-opciones{
-	width: 60px;
-	position: absolute;
-}
+
 .i{
 	outline: none;
 	border:none;
 	background-color: transparent;
 	width: 100%;
 }
+/************************************************TABLA DOCENTES********************************************/
+
+.comun-docentes{
+	height: 30px;
+	width: 160px;
+	max-width: 160px;
+	min-width: 160px;
+	text-align: center;
+}
+.txtcomun-docentes{
+	max-width: 234px;
+	width: 234px;
+	min-width: 234px;
+	text-align: center;
 
 
+}
+.cboaulas{
+	
+	width: 85px;
+}
+.cbodocentes{
+	width: 220px;
+}
 

@@ -4,7 +4,8 @@
  ?>
  <center>
  <div class="container-fluid col-lg-12">
- <div id="exterior" style="width: 100%; height: 100%;">
+<!--  <div id="exterior" style="width: 100%; height: 100%;"> -->
+	<!-- tabla-base -->
  <table class="tabla-base table-responsive border rounded table-hover">
 		<thead class="table-success">
 			<th class="titulo-dia">DIA</th>
@@ -12,8 +13,8 @@
 			<th class="titulo-registro">CURSO</th>
 			<th class="titulo-registro titulo-seccion">SECCION</th>
 			<th class="titulo-registro titulo-tp">T/P</th>
-			<th class="titulo-registro titulo-aulas">AULA</th>
-			<th class="titulo-registro titulo-docentes">DOCENTE</th>
+			<th class="titulo-aulas">AULA</th>
+			<th class="titulo-docentes">DOCENTE</th>
 			<th class="titulo-ciclo">C1</th>
 			<th class="titulo-ciclo">C2</th>
 			<th class="titulo-ciclo">C3</th>
@@ -35,10 +36,10 @@
 					Cargar($curso);
 
 				}
-				// else {
-				// 	$curso="MB146";
-				// 	Cargar($curso);
-				// }	
+				else {
+					$curso="MB146";
+					Cargar($curso);
+				}	
 		 ?>
 
 		<tr>
@@ -59,10 +60,10 @@
 				<input type="text" id="txttp" class="txtform form-control">
 			</td>
 			<td class="comun">
-				<center>
-				<select id="select-aulas">
+				
+				<select id="select-aulas" class="cboaulas">
 					<option selected disabled>
-						--SELECCIONE--
+						--ELEGIR--
 					</option>
 					<?php 
 						$o->Open(2);
@@ -94,11 +95,11 @@
 
 
 				</select>
-				</center>
+				
 			</td>
 			<td class="comun">
-				<center>
-				<select id="select-docentes">
+				
+				<select id="select-docentes" class="cbodocentes">
 
 					<option selected disabled>
 						--SELECCIONE--
@@ -118,7 +119,7 @@
 						$o->Close(2);	
 					?>
 				</select>
-				</center>
+				
 			</td>
 			<td class="comun">
 				<input type="text" id="txtc1" class="txtform form-control">
@@ -176,33 +177,24 @@
 			</tr>
 		</table>								
 </div> -->
-</div>
+<!-- </div> -->
 </center>
 
 <script>
 
 	$(document).ready(function(){
-		$("#select-aulas").select2({
-			width: '120px',
-
-		});
+		$("#select-aulas").select2();
 	});
 
 	$(document).ready(function(){
-		$(".select-aulas").select2({
-			width: '120px',
-		});
+		$(".select-aulas").select2();
 	});
 
 	$(document).ready(function(){
-		$("#select-docentes").select2({
-			 width: '240px',
-		});
+		$("#select-docentes").select2();
 	});
 	$(document).ready(function(){
-		$(".select-docentes").select2({
-			 width: '240px',
-		});
+		$(".select-docentes").select2();
 	});
 
 			
