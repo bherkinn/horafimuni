@@ -1,3 +1,7 @@
+
+
+
+
 <?php 
 	usleep(600000);
 
@@ -13,7 +17,7 @@
 
 ?>
 	
-		<tr id="<?php echo $indice; ?>">
+		<tr class="tr" id="<?php echo $indice; ?>">
 
 		<td class="comun">
 			<input type="text" id="txtdia<?php echo $indice;?>" spellcheck="false" name="txtdia" class="i txtform" value="<?php echo $a->dia; ?>" disabled>
@@ -130,7 +134,8 @@
 	<script type="text/javascript">
 
 		// var cursorstatic;
-		// var combo=0;
+		var trderecho;
+		var combo=0;
 		// var permiso;
 		// var fila;
 		// var idcursor;
@@ -216,29 +221,29 @@
 
 		// $(document).ready(function(){
 
-		// 	$("td").click(function(){
-		// 					var nombre=$(this).attr("id");
-		// 					if(nombre=="docentes")
-		// 					{
-		// 						combo=1;
-		// 						permiso=0;
-		// 					}
-		// 					else
-		// 					{
-		// 						permiso=0;
-		// 					}
+			$("td").click(function(){
+							var nombre=$(this).attr("id");
+							if(nombre=="docentes")
+							{
+								combo=1;
+								//permiso=0;
+							}
+							else
+							{
+								//permiso=0;
+							}
 
-		// 					if(nombre=="aulas")
-		// 					{
-		// 						combo=1;
-		// 						permiso=0;
-		// 					}
-		// 					else
-		// 					{
-		// 						permiso=0;
-		// 					}
+							if(nombre=="aulas")
+							{
+								combo=1;
+								//permiso=0;
+							}
+							else
+							{
+								//permiso=0;
+							}
 
-		// 				});
+						});
 			
 		// 	$("#tabla").mouseleave(function(){
 
@@ -289,6 +294,17 @@ $(document).ready(function(){
 					console.log(idcursor);
 					editar(idcursor);
 
+					$("#select-aulas"+open).change(function(){
+						combo=0;
+						console.log("aulas");
+
+					});
+
+					$("#select-docentes"+open).change(function(){
+						combo=0;
+						console.log("docentes");
+					});
+
 					if(idcursor!=open)
 					{
 
@@ -299,6 +315,25 @@ $(document).ready(function(){
 			}
 	});
 });
+
+	$("#tabla").mouseleave(function(){
+
+				if(open)
+				{
+					{	
+							if(combo==0)
+							{
+								salir(open);
+								open="";
+							}
+							else
+							{
+
+							}
+						
+					}
+				}
+			});
 
 	// $("tr").mouseenter(function(){
 
@@ -315,8 +350,34 @@ $(document).ready(function(){
 		
 	// });
 
-
+	// ***************************************************Menu Contextual********************************************************
+	$("tr").mousedown(function(e){
+		trderecho=$(this).attr("id");
+		if(trderecho)
+		{
+			if(e.which==3)
+			{
+			$("#"+trderecho).addClass("pintado")
+			$("#menucontextual").css("top",e.pageY - 20);
+			$("#menucontextual").css("left",e.pageX - 20);
+			$("#menucontextual").show("fast");
+			}
+		}
 		
+	})
+
+	$("#menucontextual").mouseleave(function(){
+		$("#"+trderecho).removeClass("pintado")
+		$("#menucontextual").hide("fast");
+	});
+		
+	$(document).bind("contextmenu",function(e){
+		$("#menu").css("display","block");
+		$("#menu").css("top",e.pageY);
+		$("#menu").css("left",e.pageX);
+		return false;
+
+	});
 		
 
 	

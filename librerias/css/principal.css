@@ -95,6 +95,16 @@ body{
 .comun{
 	height: 30px;
 }
+.tr:hover{
+	background-color: #EEEEEE;
+}
+.head-tabla{
+	background-color: #49BA86;
+	color: #EFEEEE;
+}
+.pintado{
+	background-color: #C2C2C2;
+}
 .titulo-dia{
 	height: 35px;
 	text-align: center;

@@ -259,7 +259,7 @@ function salir(indice){
 	 				$("#txttp"+indice).removeClass('form-control');
 	 				//*******************************
 	 				$("#select-aulas"+indice).prop("disabled", true);
-	 				//*******************************
+	 				// //*******************************
 	 				$("#select-docentes"+indice).prop("disabled", true);
 	 				//*******************************
 	 				$("#txtc1"+indice).prop("disabled", true);

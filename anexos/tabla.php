@@ -6,8 +6,9 @@
  <div class="container-fluid col-lg-12">
 <!--  <div id="exterior" style="width: 100%; height: 100%;"> -->
 	<!-- tabla-base -->
- <table class="tabla-base table-responsive border rounded table-hover">
-		<thead class="table-success">
+<div class="">
+ <table class="tabla-base table-responsive border rounded">
+		<tr class="head-tabla">
 			<th class="titulo-dia">DIA</th>
 			<th class="titulo-hora">HORA</th>
 			<th class="titulo-registro">CURSO</th>
@@ -25,7 +26,7 @@
 			<th class="titulo-ciclo">C8</th>
 			<th class="titulo-ciclo">C9</th>
 			<th class="titulo-ciclo">C10</th>
-		</thead>
+		</tr>
 		<?php 
 				require_once("cargar.php");
 
@@ -42,7 +43,7 @@
 				}	
 		 ?>
 
-		<tr>
+		<tr class="tr">
 
 			<td class="comun">
 				<input type="text" id="txtdia" class="txtform form-control" required="">
@@ -154,6 +155,7 @@
 		</tr>	
 
 </table>
+</div>
 </div>
 
 <!-- <div class="reducir-opciones col-sm-2 col-md-2 col-lg-1">								

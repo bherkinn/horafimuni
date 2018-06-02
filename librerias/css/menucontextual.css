@@ -1,0 +1,15 @@
+
+.menu-contextual{
+	display: none;
+	background-color: #CF5E5E;
+}
+.lista{
+	height: 20px;
+	padding: 0px;
+	margin-top: -5px;
+	list-style: none;
+}
+a:hover{
+	list-style: none;
+	text-decoration: none;
+}

@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
 	<meta charset="UTF-8">
 	<title>Registrar</title>
 
@@ -10,6 +11,7 @@
 	<!-- **************************************CSS************************************* -->
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="librerias/css/principal.css">
+	<link rel="stylesheet" type="text/css" href="librerias/css/menucontextual.css">
 	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
@@ -52,6 +54,11 @@
 				</ul>
 		</nav>
 		<br>
+			<ul id="menucontextual" class="dropdown-menu menu-contextual" style="width: 10px;">
+				<li class="lista">			
+					<center><a href="#"><i class="fas fa-trash"></i> BORRAR</a></center>
+				</li>
+			</ul>
 		<div id="tabla-acomodar" class="container">
 			
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border rounded" >

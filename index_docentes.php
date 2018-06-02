@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.default.css">
 
+
 	<!-- ***************************************JS************************************* -->
 
 	<script type="text/javascript" src="librerias/alertify/lib/alertify.js"></script>
@@ -80,15 +81,7 @@
 		
 		
 		
- <script type="text/javascript">
-  	$(document).ready(function(){
-		$(".select-aulas").select2();
-	});
-	$(document).ready(function(){
-		$(".select-docentes").select2();
-	});
 
-  </script>
 
 
 </body>
