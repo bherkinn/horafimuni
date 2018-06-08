@@ -135,6 +135,12 @@
 
 		var trderecho;
 		var combo=0;
+		var idcursor;
+		/**********************/
+		var open="";
+		var combodocente="";
+		var comboaula="";
+		var docente="";
 		
 
 			$("td").click(function(){
@@ -188,11 +194,7 @@
 
 // **********************************************************************************************************
 
-var idcursor;
-var open="";
-var combodocente="";
-var comboaula="";
-var docente="";
+
 
 $(document).ready(function(){
 	$("tr").click(function(){
@@ -212,14 +214,13 @@ $(document).ready(function(){
 					if(open!=docente)
 					{
 						docente=open;
-						$.post("anexos/docentes/ObtenerHorariosDocentes.php",{idfila:open},
-						function(data){
+						
 						//$("#tabla-docentes").html(data).fadeIn();
 						//datosDocentes=JQuery.parseJSON(data);
 
-						send(data);
+						send(open);
 						//console.log(datosDocentes);
-						});	
+						
 						console.log(idcursor);
 						
 					}

@@ -100,7 +100,7 @@ $(document).ready(function(){
 			disponible=1;
 			$.post("anexos/tabla.php",{curso:curso},
 				function(data){
-					// $("#tabla").css({"display":"none"});
+					$("#tabla").css({"display":"none"});
 					$("#tabla").html(data).fadeIn();
 			});
 		})

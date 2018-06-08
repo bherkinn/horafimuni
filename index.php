@@ -3,5 +3,5 @@
 
 	$o=new Conexion();
 
-	include_once("principal.php");
+	include_once("views/principal.php");
  ?>

@@ -26,7 +26,7 @@ var FancyWebSocket = function(url)
 		
 		this.conn.onmessage = function(evt)
 		{
-			dispatch('message', evt.data);
+			dispatch('fila', evt.data);
 		};
 		
 		this.conn.onclose = function(){dispatch('close',null)}
@@ -38,7 +38,7 @@ var FancyWebSocket = function(url)
 		this.conn.close();
 	};
 	
-	var dispatch = function(event_name, message)
+	var dispatch = function(event_name, fila)
 	 {
 	// 	if(message == null || message == "")//aqui es donde se realiza toda la accion
 	// 		{
@@ -50,12 +50,39 @@ var FancyWebSocket = function(url)
 	// 			{
 	// 				case '1':
 				//actualiza_mensaje(message);
-				if(message)
+				/****************************************/
+				// if(docentes)
+				// {
+				// 	var hdocentes=JSON.parse(docentes);
+				// 	llenarTablaDocente(hdocentes);
+				// }
+				/****************************************/
+
+				if(fila)
 				{
-					var hdocentes=JSON.parse(message);
-					llenarTablaDocente(hdocentes);
-					llenarTablaAulas();
+					$.post("anexos/docentes/ObtenerHorariosDocentes.php",{idfila:fila},
+						function(data){
+						var hdocentes=JSON.parse(data);
+						llenarTablaDocente(hdocentes);
+
+					});	
+
+					// $.post("anexos/aulas/ObtenerHorariosAulas.php",{idfila:fila},
+					// 	function(data){
+					// 	var hdocentes=JSON.parse(data);
+					// 	llenarTablaDocente(hdocentes);
+
+					// });	
+
+					// $.post("anexos/docentes/ObtenerHorariosDocentes.php",{idfila:fila},
+					// 	function(data){
+					// 	var hdocentes=JSON.parse(data);
+					// 	llenarTablaDocente(hdocentes);
+
+					// });	
 				}
+
+				
 				
 	// 				break;
 	// 				case '2':
@@ -77,7 +104,7 @@ var FancyWebSocket = function(url)
 var Server;
 function send( text ) 
 {
-    Server.send( 'message', text );
+    Server.send( 'fila', text );
 }
 $(document).ready(function() 
 {
@@ -88,7 +115,7 @@ $(document).ready(function()
     Server.bind('close', function( data ) 
 	{
     });
-    Server.bind('message', function( payload ) 
+    Server.bind('fila', function( payload ) 
 	{
     });
     Server.connect();
@@ -97,6 +124,7 @@ $(document).ready(function()
 var datos="";
 var campos=new Array();
 var contador=0;
+var canhoras=0;
 
 function llenarTablaDocente(jsondatos){
 
@@ -105,6 +133,8 @@ function llenarTablaDocente(jsondatos){
 		limpiarCajas(campos);
 	}
 
+
+	$("#nomdocente").html(jsondatos[0]["apePaterno"]+jsondatos[0]["apeMaterno"]+", "+jsondatos[0]["nombres"]+" / "+jsondatos[0]["codDocente"]);
 	console.log(jsondatos);
 	console.log(jsondatos[0]['idHorarios']);
 
@@ -141,35 +171,29 @@ function llenarTablaDocente(jsondatos){
 		while(hinicio<hfinal)
 		{	
 			
-			var celda = $("#"+hinicio+dia).html();
+			var celda = $("#d"+hinicio+dia).html();
 			if(celda=="")
 			{
-				$("#"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"/"+jsondatos[i]['codAula']+"<br>");
-				$("#"+hinicio+""+dia).addClass("pintado-true");
+				$("#d"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"/"+jsondatos[i]['codAula']+"<br>");
+				$("#d"+hinicio+""+dia).addClass("pintado-true");
+				canhoras++;
 			}
 			else
 			{
-				$("#"+hinicio+""+dia).removeClass("pintado-true");
-				$("#"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"/"+jsondatos[i]['codAula']+"<br>");
-				$("#"+hinicio+""+dia).addClass("pintado-false");
+				$("#d"+hinicio+""+dia).removeClass("pintado-true");
+				$("#d"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"/"+jsondatos[i]['codAula']+"<br>");
+				$("#d"+hinicio+""+dia).addClass("pintado-false");
+				canhoras++;
 			}
 
-
-			// var celda = $("#"+hinicio+dia).html();
-
-			
-			
-
-			campos[contador]="#"+hinicio+""+dia;
-			//console.log(campos[contador]);
+			campos[contador]="#d"+hinicio+""+dia;
 			hinicio++;
-			//console.log("ingrese");
 			contador++;
-			
-
+			$("#horas").html(canhoras);
 		}
 	}
 	contador=0;
+	canhoras=0;
 
 }
 

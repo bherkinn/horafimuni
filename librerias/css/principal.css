@@ -1,7 +1,7 @@
 .cabecera{
-	background-color: #15A612;
+	background-color: #3763F3;
 	padding: 5px;
-	color: #DDE0DD;
+	color: #E7E7E9;
 	font-size:25px;
 }
 
@@ -64,7 +64,7 @@ body{
 .nav>li>a:hover{
 	transition-property: background-color, color;
   	transition-duration: 0.3s;
-	background-color: #20AF31;
+	background-color: #4771FC;
 	color: #ffffff;
 }
 

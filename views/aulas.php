@@ -1,4 +1,3 @@
-
  <!DOCTYPE html>
 <html lang="es">
 
@@ -11,7 +10,7 @@
 	<!-- **************************************CSS************************************* -->
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="librerias/css/principal.css">
-	<link rel="stylesheet" type="text/css" href="librerias/css/docentes.css">
+	<link rel="stylesheet" type="text/css" href="librerias/css/aulas.css">
 	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
@@ -47,30 +46,15 @@
 
 		<nav>
 				<ul class="nav">
-					<li><a href="#">Inicio</a></li>
-					<li><a href="#">Docentes</a></li>
-					<li><a href="#">Aulas</a></li>
+					<li><a href="index.php">Inicio</a></li>
+					<li><a href="docentes.php">Docentes</a></li>
+					<li><a href="aulas.php">Aulas</a></li>
 					<li><a href="#">Cursos</a></li>
 					<li><a href="#">Otros</a></li>
 				</ul>
 		</nav>
 		<br>
 
-		
-
-		<div id="temporal" class="container">
-
-			
-
-		</div>
-
-
-
-
-              	  
-          <br>
-          <!-- </div> -->
-          <br>
           <div id="tabla" class="container">
 
 			
@@ -79,9 +63,10 @@
 
 
 	<script type="text/javascript">
+
 		function CrearTabla(filas,columnas,hora){
 
-			var dias = new  Array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabados','Domingos');
+			var dias = new  Array('LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADOS','DOMINGOS');
 			var cantidad="";
 			var tabla=document.createElement("table");
 			tabla.setAttribute("id","tabla-docentes");
@@ -90,9 +75,11 @@
 		    //tabla.style.border="1px solid gray";
 		    var content=document.getElementById("tabla");
 		    content.appendChild(tabla);
+		    var titulo="UNIVERSIDAD NACIONAL DE INGENIERIA - FACULTAD DE INGENIERIA MECANICA - COMISION DE HORARIOS";
 			
 			horainicial=hora;
-
+			$("#tabla-docentes").append("<tr><td colspan='6' class='cabecera-tabla ca'>"+titulo+"</td><td rowspan='2'></td></tr>");
+			$("#tabla-docentes").append("<tr><td id='nomaula' colspan='3' class='cabecera-tabla2'></td><td colspan='3' id='caracteristica' class='hora'></td></tr>");
 			for(i=0;i<filas;i++){
 				$("#tabla-docentes").append("<tr>");
 				for(u=0;u<columnas;u++)
@@ -107,17 +94,17 @@
 					}
 					else
 					{	
-						$("#tabla-docentes").append("<td id='"+(horainicial-1)+""+u+"'></td>");
+						$("#tabla-docentes").append("<td id='a"+(horainicial-1)+""+u+"'></td>");
 
 						if(u!=0)
 						{
-							$("#"+(horainicial-1)+""+u).addClass("contenido-tabla");
+							$("#a"+(horainicial-1)+""+u).addClass("contenido-tabla");
 
 							
 						}
 						else
 						{
-							$("#"+(horainicial-1)+""+u).addClass("horas");
+							$("#a"+(horainicial-1)+""+u).addClass("horas");
 
 							inicial=hora.toString().length;
 							final=(hora+1).toString().length;
@@ -125,17 +112,17 @@
 
 							if(inicial>1&&final>1)
 							{
-								$("#"+(horainicial-1)+""+u).html(hora+"-"+(hora+1));
+								$("#a"+(horainicial-1)+""+u).html(hora+"-"+(hora+1));
 							}
 							
 							if(inicial==1&&final>1)
 							{
-								$("#"+(horainicial-1)+""+u).html("0"+hora+"-"+(hora+1));
+								$("#a"+(horainicial-1)+""+u).html("0"+hora+"-"+(hora+1));
 							}
 
 							if(inicial==1&&final==1)
 							{
-								$("#"+(horainicial-1)+""+u).html("0"+hora+"-"+"0"+(hora+1));
+								$("#a"+(horainicial-1)+""+u).html("0"+hora+"-"+"0"+(hora+1));
 							}
 							
 							
@@ -149,7 +136,7 @@
 				horainicial++;
 
 				$("#tabla-docentes").append("</tr>");
-				$("#0").html("Horas");
+				$("#0").html("HORAS");
 			}
 
 		}

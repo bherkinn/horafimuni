@@ -182,7 +182,21 @@
 		{
 			try{
 				$this->Conectar(1);
-				$this->memoria=$this->con1->query("SELECT * FROM basehorarios where codDocente=$codDocente");
+				$this->memoria=$this->con1->query("SELECT horariosfim.basehorarios.*,oeraae2018.docentes.apePaterno,oeraae2018.docentes.apeMaterno,oeraae2018.docentes.nombres from horariosfim.basehorarios INNER JOIN oeraae2018.docentes ON horariosfim.basehorarios.codDocente=oeraae2018.docentes.codDocente WHERE horariosfim.basehorarios.codDocente=$codDocente");
+				$datos=$this->memoria->fetchAll(PDO::FETCH_OBJ);
+				$this->Close(1);
+				return $datos;
+			}
+			catch(Exception $a){
+				echo "erro".$a->getMessage();
+			}
+		}
+
+		public function HorarioAula($codAula)
+		{
+			try{
+				$this->Conectar(1);
+				$this->memoria=$this->con1->query("SELECT * FROM basehorarios where codAula=$codAula");
 				$datos=$this->memoria->fetchAll(PDO::FETCH_OBJ);
 				$this->Close(1);
 				return $datos;

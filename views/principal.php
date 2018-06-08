@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
 	<meta charset="UTF-8">
 	<title>Registrar</title>
 
@@ -10,6 +11,7 @@
 	<!-- **************************************CSS************************************* -->
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="librerias/css/principal.css">
+	<link rel="stylesheet" type="text/css" href="librerias/css/menucontextual.css">
 	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
@@ -22,6 +24,7 @@
 	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="librerias/select2/js/select2.min.js"></script>
 	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="librerias/js/fancywebsocket.js"></script>
 <!-- 	<script type="text/javascript" src="librerias/jqueryPlugintipsy/js/jquery.tipsy.js"></script> -->
 
 	
@@ -43,14 +46,25 @@
 
 		<nav>
 				<ul class="nav">
-					<li><a href="#">Inicio</a></li>
-					<li><a href="#">Docentes</a></li>
-					<li><a href="#">Aulas</a></li>
+					<li><a href="index.php">Inicio</a></li>
+					<li><a href="docentes.php">Docentes</a></li>
+					<li><a href="aulas.php">Aulas</a></li>
 					<li><a href="#">Cursos</a></li>
 					<li><a href="#">Otros</a></li>
 				</ul>
 		</nav>
 		<br>
+			<ul id="menucontextual" class="dropdown-menu-modificado menu-contextual" style="width: 10px;">
+				<li class="lista">			
+					<a class="borrar comun-lista" href="#"><i class="fas fa-trash" style="font-size: 15px;"></i> Borrar </a>	
+				</li>
+				<li class="lista">			
+					<a class="borrar comun-lista" href="#"><i class="fas fa-check" style="font-size: 13px;"></i> Marcar </a>	
+				</li>
+				<li class="lista">			
+					<a class="borrar comun-lista" href="#"><i class="fas fa-times" style="font-size: 17px;"></i> Desmarcar </a>	
+				</li>
+			</ul>
 		<div id="tabla-acomodar" class="container">
 			
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border rounded" >
@@ -91,44 +105,17 @@
 		<div id="tablas-extras" class="container">
 			<div class="row">
 				<div class="container-fluid col-md-6">
-					<div class="container-fluid border rounded" style=" height: 300px;">
-						
+					<div id="auxiliar" class="container-fluid border rounded" style=" height: 465px;">
 					</div>
 				</div>
 				
 				<div class="container-fluid col-md-6">
-					<div class="container-fluid border rounded">
+					<div class="container-fluid border rounded" style=" height: 265px;">
 						<br>
 						<center>
-						<table class="table-responsive border rounded table-hover" >
-							<tr class="border">
-								<th class="comun-docentes table-success">COD. UNI</th>
-								<td style="">
-									
-								</td>
-							</tr>
-							<tr class="border">
-								<th  class="comun-docentes table-success">A. PATERNO</th>
-								<td></td>
-							</tr>
-							<tr class="border">
-								<th class="comun-docentes table-success">A. MATERNO</th>
-								<td></td>
-							</tr>
-							<tr class="border">
-								<th class="comun-docentes table-success">NOMBRES</th>
-								<td></td>
-							</tr>
-							<tr class="border">
-								<th class="comun-docentes table-success">DEDICAION</th>
-								<td></td>
-							</tr>
-							<tr class="border">
-								<th class="comun-docentes table-success">DEPA.</th>
-								<td></td>
-							</tr>
+							<div id="tabla-docentes">
 								
-						</table>
+							</div>
 						</center>
 						<br>
 					</div>
