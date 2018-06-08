@@ -54,9 +54,15 @@
 				</ul>
 		</nav>
 		<br>
-			<ul id="menucontextual" class="dropdown-menu menu-contextual" style="width: 10px;">
+			<ul id="menucontextual" class="dropdown-menu-modificado menu-contextual" style="width: 10px;">
 				<li class="lista">			
-					<center><a href="#"><i class="fas fa-trash"></i> BORRAR</a></center>
+					<a class="borrar comun-lista" href="#"><i class="fas fa-trash" style="font-size: 15px;"></i> Borrar </a>	
+				</li>
+				<li class="lista">			
+					<a class="borrar comun-lista" href="#"><i class="fas fa-check" style="font-size: 13px;"></i> Marcar </a>	
+				</li>
+				<li class="lista">			
+					<a class="borrar comun-lista" href="#"><i class="fas fa-times" style="font-size: 17px;"></i> Desmarcar </a>	
 				</li>
 			</ul>
 		<div id="tabla-acomodar" class="container">

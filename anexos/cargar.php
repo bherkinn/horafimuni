@@ -133,93 +133,9 @@
 	?>
 	<script type="text/javascript">
 
-		// var cursorstatic;
 		var trderecho;
 		var combo=0;
-		// var permiso;
-		// var fila;
-		// var idcursor;
-		// var detener=1;
-
-
-
 		
-		// 	$("tr").mouseenter(function(){	
-		// 		idcursor=$(this).attr("id");
-				
-		// 		if(idcursor)
-		// 		{
-		// 		if(detener<=2)
-		// 			{
-		// 				$("#"+idcursor).click(function(){
-		// 				console.log(idcursor);
-								
-		// 						detener=1;
-		// 						if(permiso==1)
-		// 						{
-		// 							combo=0;
-		// 						}
-								
-								
-
-		// 						if(fila==idcursor)
-		// 						{
-									
-		// 						}
-		// 						else
-		// 						{
-		// 							if(disponible==0)
-
-		// 							{	
-		// 								salir(cursorstatic);
-		// 							}	
-		// 							cursorstatic=idcursor;
-		// 							editar(idcursor);
-		// 							fila=cursorstatic;
-		// 							disponible=0;
-		// 						}
-								
-
-		// 					$("#select-aulas"+cursorstatic).change(function(){
-		// 						combo=0;
-
-		// 					});
-
-		// 					$("#select-docentes"+cursorstatic).change(function(){
-		// 						combo=0;
-		// 					});
-		// 				});
-
-		// 				detener++;
-		// 				}
-		// 			}
-				
-		// 		if(idcursor)
-		// 		{	
-		// 			console.log(idcursor);
-		// 			$("#tabla-docentes").css({"display":"none"});
-		// 			$.post("anexos/mostrar.php",{idfila:idcursor},
-		// 			function(data){
-		// 			$("#tabla-docentes").html(data).fadeIn();
-		// 			send(data);
-		// 			});
-		// 		}
-					
-
-					
-				
-		// 	});
-
-		
-
-		// $(document).ready(function(){
-		// 	$("tr").mouseleave(function(){	
-		// 		idcursor=null;
-		// 	});
-		// });
-
-
-		// $(document).ready(function(){
 
 			$("td").click(function(){
 							var nombre=$(this).attr("id");
@@ -244,32 +160,39 @@
 							}
 
 						});
+
+			$("td").mouseenter(function(){
+				var indefinido=$(this).attr("id");
+				if(indefinido)
+				{
+
+				}
+				else
+				{
+					combo=0;
+				}
+			});
+
+			$("th").mouseenter(function(){
+				var indefinido=$(this).attr("id");
+				if(indefinido)
+				{
+
+				}
+				else
+				{
+					combo=0;
+				}
+			});
 			
-		// 	$("#tabla").mouseleave(function(){
-
-		// 		if(cursorstatic)
-		// 		{
-		// 			{	
-		// 					if(combo==0)
-		// 					{
-		// 						salir(cursorstatic);
-		// 						fila=null;
-		// 					}
-		// 					else
-		// 					{
-
-		// 					}
-						
-		// 			}
-		// 		}
-		// 	});
-
-		// });
 
 // **********************************************************************************************************
 
 var idcursor;
 var open="";
+var combodocente="";
+var comboaula="";
+var docente="";
 
 $(document).ready(function(){
 	$("tr").click(function(){
@@ -286,13 +209,23 @@ $(document).ready(function(){
 						salir(open);
 					}		
 					open=idcursor;
-					$.post("anexos/mostrar.php",{idfila:open},
-					function(data){
-					$("#tabla-docentes").html(data).fadeIn();
-					send(data);
-					});		
-					console.log(idcursor);
+					if(open!=docente)
+					{
+						docente=open;
+						$.post("anexos/docentes/ObtenerHorariosDocentes.php",{idfila:open},
+						function(data){
+						//$("#tabla-docentes").html(data).fadeIn();
+						//datosDocentes=JQuery.parseJSON(data);
+
+						send(data);
+						//console.log(datosDocentes);
+						});	
+						console.log(idcursor);
+						
+					}
 					editar(idcursor);
+						
+					
 
 					$("#select-aulas"+open).change(function(){
 						combo=0;
@@ -316,7 +249,7 @@ $(document).ready(function(){
 	});
 });
 
-	$("#tabla").mouseleave(function(){
+	$("#tabla").mouseleave(function(){		
 
 				if(open)
 				{
@@ -335,20 +268,6 @@ $(document).ready(function(){
 				}
 			});
 
-	// $("tr").mouseenter(function(){
-
-	// 	var idhover=$(this).attr("id");
-	// 	if(idhover)
-	// 	{
-	// 		console.log("hover"+idhover);
-	// 		$.post("anexos/mostrar.php",{idfila:idhover},
-	// 		function(data){
-	// 		$("#tabla-docentes").html(data).fadeIn();
-	// 		send(data);
-	// 		});
-	// 	}
-		
-	// });
 
 	// ***************************************************Menu Contextual********************************************************
 	$("tr").mousedown(function(e){
@@ -361,24 +280,26 @@ $(document).ready(function(){
 			$("#menucontextual").css("top",e.pageY - 20);
 			$("#menucontextual").css("left",e.pageX - 20);
 			$("#menucontextual").show("fast");
+
+			$(document).on("contextmenu", function(e) {
+                return false;
+             });
+			
+			
 			}
 		}
+	});
 		
-	})
+	
 
 	$("#menucontextual").mouseleave(function(){
 		$("#"+trderecho).removeClass("pintado")
 		$("#menucontextual").hide("fast");
+		$(document).off("contextmenu");
+		
 	});
 		
-	$(document).bind("contextmenu",function(e){
-		$("#menu").css("display","block");
-		$("#menu").css("top",e.pageY);
-		$("#menu").css("left",e.pageX);
-		return false;
-
-	});
+	
 		
-
 	
 	</script>

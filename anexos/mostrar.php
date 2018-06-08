@@ -1,136 +1,190 @@
 <?php 
 	
-	require_once("../models/conexion.php");
-	$indice=$_POST["idfila"];
-	$basehorarios=new Conexion();
+
+	function CrearTabla($i)
+                  {
 
 
-	$base=$basehorarios->MostrarDatosFila($indice);
-	foreach ($base as $a) {
-		$iddocente=$a->codDocente;
-	}
+                  	require_once("../models/conexion.php");
+					$indice=$_POST["idfila"];
 
-	$datos_docente=$basehorarios->HorarioDocente($iddocente);
+					$basehorarios=new Conexion();
+
+					$base=$basehorarios->MostrarDatosFila($indice);
+					foreach ($base as $a) {
+						$iddocente=$a->codDocente;
+					}
 
 ?>
-		<table class="tabla-base table-responsive border rounded table-hover">
-		<thead class="table-success">
-			<th class="titulo-dia">DIA</th>
-			<th class="titulo-hora">HORA</th>
-			<th class="titulo-registro">CURSO</th>
-			<th class="titulo-registro titulo-seccion">SECCION</th>
-			<th class="titulo-registro titulo-tp">T/P</th>
-			<th class="titulo-aulas">AULA</th>
-			<th class="titulo-docentes">DOCENTE</th>
-			<th class="titulo-ciclo">C1</th>
-			<th class="titulo-ciclo">C2</th>
-			<th class="titulo-ciclo">C3</th>
-			<th class="titulo-ciclo">C4</th>
-			<th class="titulo-ciclo">C5</th>
-			<th class="titulo-ciclo">C6</th>
-			<th class="titulo-ciclo">C7</th>
-			<th class="titulo-ciclo">C8</th>
-			<th class="titulo-ciclo">C9</th>
-			<th class="titulo-ciclo">C10</th>
-		</thead>
+
+	<table border="2" class="table-responsive-horario border rounded">
+            <tr>
+              <th class="horas">Horas</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sabado</th>
+            </tr>
+            <tr>
+
 <?php 
 
-	foreach ($datos_docente as $u) {
-		$indice=$u->idHorarios;
+
+	              	  $o=new Conexion();
+	              	  $datos=$o->HorarioDocente("$iddocente");
+	              	  $dia_horario=array();//----------------------------------------------------DIA DE LA BASE DE DATOS
+	              	  $hora_inicio=array();//----------------------------------------------------HORA INICIO DE LA BASE DE DATOS
+	              	  $hora_fina=array();//------------------------------------------------------HORA FINAL DE LA BASE DE DATOS
+	              	  $curso_horario=array();//--------------------------------------------------CURSO DE LA BASE DE DATOS
+
+	              	  $mostrar;
+	              	  $contador_horario=0;
+	              	  $contador_bucle_principal=0;
+	              	  $ingresa=0;
+
+
+
+	              	  foreach ($datos as $u) {
+	              	  	$hora_inicio[$contador_horario]=intval(substr($u->hora,0,2));
+	              	  	$hora_final[$contador_horario]=intval(substr($u->hora,3,5));
+
+	              	  	switch ($u->dia) {
+	              	  		case 'LU':$india=1;
+	              	  			
+	              	  			break;
+	              	  		
+	              	  		case 'MA':$india=2;
+	              	  			
+	              	  			break;
+
+	              	  		case 'MI':$india=3;
+	              	  			
+	              	  			break;
+
+	              	  		case 'JU':$india=4;
+	              	  			
+	              	  			break;
+
+	              	  		case 'VI':$india=5;
+	              	  			
+	              	  			break;
+
+	              	  		case 'SA':$india=6;
+	              	  			break;	              	  			
+	              	  	}
+
+	              	    $dia_horario[$contador_horario]=$india; //-----------------------------------DIA DE LA BASE DE DATOS
+	              	  	$contador_horario++;
+
+
+	              	  }
+
+                    $pase=0;
+                    $salto=6;
+                    $indice=6;	
+                   
+                    
+                    for($a=0;$a<=$i;$a++)
+                    {
+                    	
+                                           
+                      if($a==$pase)
+                      {
+                      	 $dia=0;
+                      	 $longitud=strlen($indice);
+                   	 	 $nextlongitud=strlen($indice+1);
+
+                   	 	 if($longitud>1 && $nextlongitud>1)
+                   	 	 {
+                   	 	 	$hora=$indice."-".($indice+1);
+                   	 	 }
+                   	 	 else
+                   	 	 {
+                   	 	 	if($longitud==1 && $nextlongitud>1)
+                   	 	 	{
+                   	 	 		$hora="0".$indice."-".($indice+1);
+                   	 	 	}
+
+                   	 	 	if($longitud==1 && $nextlongitud==1)
+                   	 	 	{
+                   	 	 		$hora="0".$indice."-0".($indice+1);
+                   	 	 	}
+
+                   	 	 }
+
+                        echo "<tr>";
+                       echo "<td>".$hora."</td>";
+                       $pase=$pase+7;
+
+                       $indice++;    
+
+                      }
+                      else
+                      {	
+                      	 
+                      	$contador2=0;
+                      	foreach ($datos as $h) {
+                      		
+                      		if($dia==$dia_horario[$contador2])
+                      			{	
+                      				
+
+                      					if(($indice-1>=$hora_inicio[$contador2] && $hora_final[$contador2]>=($indice)))
+                      					{
+
+                      						echo "<td class='contenido-tabla'style='background-color: #AAE69D;color:#000;'>".$h->codCurso." ".$h->secCurso."<br>".$h->codAula."</td>";   
+	                      					$ingresa=1; 
+
+                      					}
+
+	                      				           				
+                      			}
+                      			
+                      			$contador2++;
+
+                      	}
+
+                      	if($ingresa==1){
+                      		$ingresa=0;
+                      	}
+                      	else
+                      	{
+                      		echo "<td class='contenido-tabla'></td>";
+                      	}
+                      	
+
+                      	
+                      			
+	                      		
+	                  
+                          
+
+                          if($a==$salto)
+                          {
+                          echo "</tr>";
+                          $salto=$pase-1;
+
+                          }
+                      }
+
+
+                      $dia++;
+                      
+                    } 
+
+
+?>
+
+				</table>
+
+	          </center>
+	          <br>
+<?php 
+
+                }              
+
+CrearTabla(111);
 
  ?>
- 	<tr id="<?php echo $indice; ?>">
-
-		<td class="comun">
-			<input type="text" id="txtdia<?php echo $indice;?>" spellcheck="false" name="txtdia" class="i txtform" value="<?php echo $u->dia; ?>" disabled>
-		</td>
-
-		<td class="comun">
-			<input type="text" id="txthora<?php echo $indice;?>" spellcheck="false" name="txthora" class="i txtform " value="<?php echo $u->hora; ?>" disabled>
-		</td>
-
-		<td class="comun">
-			<input type="text" id="txtcurso<?php echo $indice;?>" spellcheck="false" name="txtcurso" class="txtform i" value="<?php echo $u->codCurso; ?>" disabled >
-		</td>
-
-		<td class="comun">
-			<input type="text" id="txtseccion<?php echo $indice;?>" spellcheck="false" name="txtseccion" class="txtform i" value="<?php echo $u->secCurso; ?>" disabled>
-		</td>
-
-		<td class="comun">
-			<input type="text" id="txttp<?php echo $indice;?>" spellcheck="false" name="txttp" class="txtform i" value="<?php echo $u->teopra; ?>" disabled>
-		</td>
-
-		<td class="comun" id="aulas">
-			
-				<input type="text" id="txtaulas<?php echo $indice ?>" spellcheck="false" class="txtform i" value="<?php echo $u->codAula; ?>" >
-			
-		</td>
-		<td class="comun" id="docentes">
-			
-				
-					<?php 
-						$basehorarios->Open(2);
-						$tabla=$basehorarios->mostrarDocente($u->codDocente);
-						foreach($tabla as $e)
-						{
-					?>	
-						<input type="" name="" value="<?php echo $e->apePaterno." ".$e->apeMaterno.", ".$e->nombres; ?>" class="txtform i" >
-							
-						
-					<?php  
-						}
-					?>
-				
-			
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc1" id="txtc1<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c1 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc2" id="txtc2<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c2 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc3" id="txtc3<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c3 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc4" id="txtc4<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c4 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc5" id="txtc5<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c5 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc6" id="txtc6<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c6 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc7" id="txtc7<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c7 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc8" id="txtc8<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c8 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc9" id="txtc9<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c9 ?>" disabled>
-		</td>
-		<td class="comun">
-			<input type="text" name="txtc10" id="txtc10<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $u->c10 ?>" disabled>
-		</td>
-	</tr>
-	
-
- <?php 
-
-	}
-
-  ?>
-
-  </table>
-
-  <script type="text/javascript">
-  	$(document).ready(function(){
-		$(".select-aulas").select2();
-	});
-	$(document).ready(function(){
-		$(".select-docentes").select2();
-	});
-
-  </script>

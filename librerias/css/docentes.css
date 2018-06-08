@@ -1,0 +1,35 @@
+.table-responsive-horario{
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  max-width: 1043px;
+}
+.horas{
+  vertical-align: middle;
+	min-width: 80px;
+  text-align: center;
+
+
+}
+.contenido-tabla{
+	min-width: 160px;
+	height: 45px;
+  text-align: center
+}
+th, tr{
+	text-align: center;
+}
+.pintado-true{
+  background-color: #AAE69D;
+  color:#000;
+  font-size: 12px;
+  vertical-align: middle;
+}
+.pintado-false{
+  background-color: #EF7575;
+  color:#000;
+  font-size: 12px;
+  vertical-align: middle;
+}
