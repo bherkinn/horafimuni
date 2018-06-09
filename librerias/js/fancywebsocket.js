@@ -67,19 +67,19 @@ var FancyWebSocket = function(url)
 
 					});	
 
-					// $.post("anexos/aulas/ObtenerHorariosAulas.php",{idfila:fila},
-					// 	function(data){
-					// 	var hdocentes=JSON.parse(data);
-					// 	llenarTablaDocente(hdocentes);
+					$.post("anexos/aulas/ObtenerHorariosAulas.php",{idfila:fila},
+						function(data){
+						var haulas=JSON.parse(data);
+						llenarTablaAulas(haulas);
 
-					// });	
+					});	
 
-					// $.post("anexos/docentes/ObtenerHorariosDocentes.php",{idfila:fila},
-					// 	function(data){
-					// 	var hdocentes=JSON.parse(data);
-					// 	llenarTablaDocente(hdocentes);
+					$.post("anexos/cursos/ObtenerHorariosCursos.php",{idfila:fila},
+						function(data){
+						var hcursos=JSON.parse(data);
+						llenarTablaCursos(hcursos);
 
-					// });	
+					});	
 				}
 
 				
@@ -122,15 +122,176 @@ $(document).ready(function()
 });
 
 var datos="";
-var campos=new Array();
+var camposDocentes=new Array();
+var camposAulas=new Array();
+var camposCursos=new Array();
 var contador=0;
 var canhoras=0;
 
+function llenarTablaCursos(jsondatos){
+
+	if(camposCursos[0])
+	{
+		limpiarCajas(camposCursos);
+	}
+
+	if(jsondatos[0]["taburete"]=="0")
+	{
+		var taburete="NO";
+	}
+	else
+	{
+		var taburete="SI";
+	}
+
+	$("#nomcurso").html(jsondatos[0]["codCurso"]+" - "+jsondatos[0]["nomCurso"]);
+	$("#caracteristica").html("Capacidad "+jsondatos[0]['capacidad']+" sillas <br> Con Pizarra "+jsondatos[0]["pizarra"]+" y "+taburete+" tiene taburete");
+	console.log(jsondatos);
+	console.log(jsondatos[0]['idHorarios']);
+
+	var cantidad=Object.keys(jsondatos).length;
+	var dia;
+	
+	for(i=0;i<cantidad;i++)
+	{
+		var hinicio=parseInt(jsondatos[i]['hora'].substr(0,2));
+		var hfinal=parseInt(jsondatos[i]['hora'].substr(3,5));
+		switch(jsondatos[i]['dia'])
+		{
+			case "LU":dia=1;
+			break;
+			case "MA":dia=2;
+			break;
+			case "MI":dia=3;
+			break;
+			case "JU":dia=4;
+			break;
+			case "VI":dia=5;
+			break;
+			case "SA":dia=6;
+			break;
+			case "DO":dia=7;
+			break;
+		}
+
+		console.log("el dia es "+dia);
+		
+
+		console.log(hinicio+""+hfinal);
+
+		while(hinicio<hfinal)
+		{	
+			
+			var celda = $("#c"+hinicio+dia).html();
+			if(celda=="")
+			{
+				$("#c"+hinicio+""+dia).append(jsondatos[i]['secCurso']+" : "+jsondatos[i]['codAula']+"<br>"+jsondatos[i]['apePaterno']+", "+jsondatos[i]['nombres']+"<br>");
+				$("#c"+hinicio+""+dia).addClass("pintado-true");
+				canhoras++;
+			}
+			else
+			{
+				$("#c"+hinicio+""+dia).removeClass("pintado-true");
+				$("#c"+hinicio+""+dia).append(jsondatos[i]['secCurso']+" : "+jsondatos[i]['codAula']+"<br>"+jsondatos[i]['apePaterno']+", "+jsondatos[i]['nombres']+"<br>");
+				$("#c"+hinicio+""+dia).addClass("pintado-false");
+				canhoras++;
+			}
+
+			camposCursos[contador]="#c"+hinicio+""+dia;
+			hinicio++;
+			contador++;
+		}
+	}
+	contador=0;
+	canhoras=0;
+
+}
+
+function llenarTablaAulas(jsondatos){
+
+	if(camposAulas[0])
+	{
+		limpiarCajas(camposAulas);
+	}
+
+	if(jsondatos[0]["taburete"]=="0")
+	{
+		var taburete="NO";
+	}
+	else
+	{
+		var taburete="SI";
+	}
+
+	$("#nomaula").html("AULA: "+jsondatos[0]["codAula"]);
+	$("#caracteristica").html("Capacidad "+jsondatos[0]['capacidad']+" sillas <br> Con Pizarra "+jsondatos[0]["pizarra"]+" y "+taburete+" tiene taburete");
+	console.log(jsondatos);
+	console.log(jsondatos[0]['idHorarios']);
+
+	var cantidad=Object.keys(jsondatos).length;
+	var dia;
+	
+	for(i=0;i<cantidad;i++)
+	{
+		var hinicio=parseInt(jsondatos[i]['hora'].substr(0,2));
+		var hfinal=parseInt(jsondatos[i]['hora'].substr(3,5));
+		switch(jsondatos[i]['dia'])
+		{
+			case "LU":dia=1;
+			break;
+			case "MA":dia=2;
+			break;
+			case "MI":dia=3;
+			break;
+			case "JU":dia=4;
+			break;
+			case "VI":dia=5;
+			break;
+			case "SA":dia=6;
+			break;
+			case "DO":dia=7;
+			break;
+		}
+
+		console.log("el dia es "+dia);
+		
+
+		console.log(hinicio+""+hfinal);
+
+		while(hinicio<hfinal)
+		{	
+			
+			var celda = $("#a"+hinicio+dia).html();
+			if(celda=="")
+			{
+				$("#a"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"<br>"+jsondatos[i]['apePaterno']+", "+jsondatos[i]['nombres']+"<br>");
+				$("#a"+hinicio+""+dia).addClass("pintado-true");
+				canhoras++;
+			}
+			else
+			{
+				$("#a"+hinicio+""+dia).removeClass("pintado-true");
+				$("#a"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"<br>"+jsondatos[i]['apePaterno']+", "+jsondatos[i]['nombres']+"<br>");
+				$("#a"+hinicio+""+dia).addClass("pintado-false");
+				canhoras++;
+			}
+
+			camposAulas[contador]="#a"+hinicio+""+dia;
+			hinicio++;
+			contador++;
+		}
+	}
+	contador=0;
+	canhoras=0;
+
+}
+
+
 function llenarTablaDocente(jsondatos){
 
-	if(campos[0])
+	if(camposDocentes[0])
 	{
-		limpiarCajas(campos);
+		limpiarCajas(camposDocentes);
 	}
 
 
@@ -186,7 +347,7 @@ function llenarTablaDocente(jsondatos){
 				canhoras++;
 			}
 
-			campos[contador]="#d"+hinicio+""+dia;
+			camposDocentes[contador]="#d"+hinicio+""+dia;
 			hinicio++;
 			contador++;
 			$("#horas").html(canhoras);
@@ -197,6 +358,7 @@ function llenarTablaDocente(jsondatos){
 
 }
 
+
 function limpiarCajas(camposllenos){
 
 	while(contador<camposllenos.length)
@@ -205,7 +367,6 @@ function limpiarCajas(camposllenos){
 		$(camposllenos[contador]).html("");
 		$(camposllenos[contador]).removeClass("pintado-false");
 		contador++;
-
 	}
 
 	contador=0;

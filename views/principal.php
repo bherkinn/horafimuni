@@ -49,7 +49,7 @@
 					<li><a href="index.php">Inicio</a></li>
 					<li><a href="docentes.php">Docentes</a></li>
 					<li><a href="aulas.php">Aulas</a></li>
-					<li><a href="#">Cursos</a></li>
+					<li><a href="cursos.php">Cursos</a></li>
 					<li><a href="#">Otros</a></li>
 				</ul>
 		</nav>

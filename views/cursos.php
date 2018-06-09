@@ -3,14 +3,14 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Aulas</title>
+	<title>Cursos</title>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<!-- **************************************CSS************************************* -->
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="librerias/css/principal.css">
-	<link rel="stylesheet" type="text/css" href="librerias/css/aulas.css">
+	<link rel="stylesheet" type="text/css" href="librerias/css/cursos.css">
 	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
@@ -69,7 +69,7 @@
 			var dias = new  Array('LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADOS','DOMINGOS');
 			var cantidad="";
 			var tabla=document.createElement("table");
-			tabla.setAttribute("id","tabla-docentes");
+			tabla.setAttribute("id","tabla-cursos");
 			tabla.setAttribute("class","table-responsive-horario border rounded");
 			tabla.setAttribute("border","3");
 		    //tabla.style.border="1px solid gray";
@@ -78,15 +78,15 @@
 		    var titulo="UNIVERSIDAD NACIONAL DE INGENIERIA - FACULTAD DE INGENIERIA MECANICA - COMISION DE HORARIOS";
 			
 			horainicial=hora;
-			$("#tabla-docentes").append("<tr><td colspan='6' class='cabecera-tabla ca'>"+titulo+"</td><td rowspan='2'></td></tr>");
-			$("#tabla-docentes").append("<tr><td id='nomaula' colspan='3' class='cabecera-tabla2'></td><td colspan='3' id='caracteristica' class='caract'></td></tr>");
+			$("#tabla-cursos").append("<tr><td colspan='6' class='cabecera-tabla ca'>"+titulo+"</td><td rowspan='2'></td></tr>");
+			$("#tabla-cursos").append("<tr><td id='nomcurso' colspan='6' class='cabecera-tabla2'></td></tr>");
 			for(i=0;i<filas;i++){
-				$("#tabla-docentes").append("<tr>");
+				$("#tabla-cursos").append("<tr>");
 				for(u=0;u<columnas;u++)
 				{
 					if(i==0)
 					{
-						$("#tabla-docentes").append("<th class='horas' id='"+u+"'></th>");
+						$("#tabla-cursos").append("<th class='horas' id='"+u+"'></th>");
 						if(u!=0)
 						{
 							$("#"+u).html(dias[u-1]);
@@ -94,17 +94,17 @@
 					}
 					else
 					{	
-						$("#tabla-docentes").append("<td id='a"+(horainicial-1)+""+u+"'></td>");
+						$("#tabla-cursos").append("<td id='c"+(horainicial-1)+""+u+"'></td>");
 
 						if(u!=0)
 						{
-							$("#a"+(horainicial-1)+""+u).addClass("contenido-tabla");
+							$("#c"+(horainicial-1)+""+u).addClass("contenido-tabla");
 
 							
 						}
 						else
 						{
-							$("#a"+(horainicial-1)+""+u).addClass("horas");
+							$("#c"+(horainicial-1)+""+u).addClass("horas");
 
 							inicial=hora.toString().length;
 							final=(hora+1).toString().length;
@@ -112,17 +112,17 @@
 
 							if(inicial>1&&final>1)
 							{
-								$("#a"+(horainicial-1)+""+u).html(hora+"-"+(hora+1));
+								$("#c"+(horainicial-1)+""+u).html(hora+"-"+(hora+1));
 							}
 							
 							if(inicial==1&&final>1)
 							{
-								$("#a"+(horainicial-1)+""+u).html("0"+hora+"-"+(hora+1));
+								$("#c"+(horainicial-1)+""+u).html("0"+hora+"-"+(hora+1));
 							}
 
 							if(inicial==1&&final==1)
 							{
-								$("#a"+(horainicial-1)+""+u).html("0"+hora+"-"+"0"+(hora+1));
+								$("#c"+(horainicial-1)+""+u).html("0"+hora+"-"+"0"+(hora+1));
 							}
 							
 							
@@ -135,7 +135,7 @@
 
 				horainicial++;
 
-				$("#tabla-docentes").append("</tr>");
+				$("#tabla-cursos").append("</tr>");
 				$("#0").html("HORAS");
 			}
 

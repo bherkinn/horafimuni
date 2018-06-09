@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Registrar</title>
+	<title>Docentes</title>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -50,7 +50,7 @@
 					<li><a href="index.php">Inicio</a></li>
 					<li><a href="docentes.php">Docentes</a></li>
 					<li><a href="aulas.php">Aulas</a></li>
-					<li><a href="#">Cursos</a></li>
+					<li><a href="cursos.php">Cursos</a></li>
 					<li><a href="#">Otros</a></li>
 				</ul>
 		</nav>
@@ -142,7 +142,7 @@
 
 		}
 
-			CrearTabla(17,7,6);
+			CrearTabla(16,7,7);
 		
 	</script>
 
