@@ -35,24 +35,55 @@
 
 <body>
 		<header>
-			<div class="container-fluid cabecera">
-				<img class="img-logo" src="librerias/img/uni.png">
-				HORARIOS FIM
-				<button style="display: none;" class="menu fas fa-bars">
-					<!-- <i class="fas fa-bars"></i> -->
-				</button>
-			</div>
-		</header>
+			<div class="cabecera">
+				<div class="cabezal-menu">
+					<img class="img-logo" src="librerias/img/uni.png">
+					<div class="nom-titulo">
+						HORARIOS
+						<br>
+						 FIM
+					</div>
+				</div>
+				<div class="div-menu">
+					<button id="menu" class="menu fas fa-bars">
+					
+					</button>
+				</div>
+				
 
-		<nav>
+				<nav>
 				<ul class="nav">
-					<li><a href="index.php">Inicio</a></li>
-					<li><a href="docentes.php">Docentes</a></li>
-					<li><a href="aulas.php">Aulas</a></li>
-					<li><a href="cursos.php">Cursos</a></li>
-					<li><a href="#">Otros</a></li>
+					<!-- <li class="titulo-lista">PRINCIPAL</li> -->
+					<li><a href="index.php"><i class="icono izquierda fas fa-registered"></i>REGISTRAR</a></li>
+					<li><a href="index.php"><i class="icono izquierda fas fa-arrows-alt"></i>CRUCES</a></li>
+					<li class="titulo-lista">VISTAS</li>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-eye"></i> AUTOMATICO<i class="icono derecha fas fa-chevron-down"></i></a>
+						<ul>
+							<li><a href="docentes.php"></i>DOCENTES</a></li>
+							<li><a href="aulas.php">AULAS</a></li>
+							<li><a href="cursos.php">CURSOS</a></li>
+						</ul>
+					</li>
+					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> MANUAL <i class="icono derecha fas fa-chevron-down"></i></a>
+						<ul>
+							<li><a href="docentes.php">DOCENTES</a></li>
+							<li><a href="aulas.php">AULAS</a></li>
+							<li><a href="cursos.php">CURSOS</a></li>
+						</ul>
+
+					</li>
+					<li class="titulo-lista">REPORTES</li>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-user-circle"></i> DOCENTES</a>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-cube"></i> AULAS</a>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-clipboard"></i> CURSOS</a>
+										
 				</ul>
-		</nav>
+			</nav>
+			</div>
+
+			
+
+		</header>
 		<br>
 
           <div id="tabla" class="container">
@@ -147,6 +178,10 @@
 
 
     </style>
+
+    <script type="text/javascript" src="librerias/js/comun.js" >
+			
+	</script>
 		
 
 

@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.default.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 	<!-- ***************************************JS************************************* -->
 
@@ -35,24 +36,59 @@
 
 <body>
 		<header>
-			<div class="container-fluid cabecera">
-				<img class="img-logo" src="librerias/img/uni.png">
-				HORARIOS FIM
-				<button style="display: none;" class="menu fas fa-bars">
-					<!-- <i class="fas fa-bars"></i> -->
-				</button>
+			<div class="cabecera">
+				<div class="cabezal-menu">
+					<img class="img-logo" src="librerias/img/uni.png">
+					<div class="nom-titulo">
+						HORARIOS
+						<br>
+						 FIM
+					</div>
+				</div>
+				<div class="div-menu">
+					<button id="menu" class="menu fas fa-bars">
+					
+					</button>
+				</div>
+				
+
+				<nav>
+				<ul class="nav">
+					<!-- <li class="titulo-lista">PRINCIPAL</li> -->
+					<li><a href="index.php"><i class="icono izquierda fas fa-registered"></i>Registrar</a></li>
+					<li><a href="index.php"><i class="icono izquierda fas fa-arrows-alt"></i>Cruces</a></li>
+					<li class="titulo-lista">VISTAS</li>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-eye"></i> Automatico<i class="icono derecha fas fa-chevron-down"></i></a>
+						<ul>
+							<li><a href="docentes.php"></i>DOCENTES</a></li>
+							<li><a href="aulas.php">AULAS</a></li>
+							<li><a href="cursos.php">CURSOS</a></li>
+						</ul>
+					</li>
+					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> Manual <i class="icono derecha fas fa-chevron-down"></i></a>
+						<ul>
+							<li><a href="views/manual/docentes.php">DOCENTES</a></li>
+							<li><a href="aulas.php">AULAS</a></li>
+							<li><a href="cursos.php">CURSOS</a></li>
+						</ul>
+
+					</li>
+					<li class="titulo-lista">REPORTES</li>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-user-circle"></i> Docentes</a>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-cube"></i> Aulas</a>
+					<li><a href="#" id="link1"><i class="icono izquierda fas fa-clipboard"></i> Cursos</a>
+										
+				</ul>
+			</nav>
 			</div>
+
+			
+
 		</header>
 
-		<nav>
-				<ul class="nav">
-					<li><a href="index.php">Inicio</a></li>
-					<li><a href="docentes.php">Docentes</a></li>
-					<li><a href="aulas.php">Aulas</a></li>
-					<li><a href="cursos.php">Cursos</a></li>
-					<li><a href="#">Otros</a></li>
-				</ul>
-		</nav>
+		
+
+
 		<br>
 			<ul id="menucontextual" class="dropdown-menu-modificado menu-contextual" style="width: 10px;">
 				<li class="lista">			
@@ -132,6 +168,11 @@
 					 width: '240px',
 				});
 			});
+
+		</script>
+
+
+		<script type="text/javascript" src="librerias/js/comun.js" >
 
 		</script>
 

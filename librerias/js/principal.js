@@ -4,6 +4,7 @@ var cerrado="no";
 var idcursor;
 var indicefila;
 
+
 $(document).ready(function(){
 				$("#select-cursos").select2({
 					 width: '240px',

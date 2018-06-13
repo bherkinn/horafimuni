@@ -9,26 +9,29 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<!-- **************************************CSS************************************* -->
-	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="librerias/css/principal.css">
-	<link rel="stylesheet" type="text/css" href="librerias/css/docentes.css">
-	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
-	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
-	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.default.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/css/principal.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/css/docentes.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/select2/css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/alertify/themes/alertify.core.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/alertify/themes/alertify.default.css">
 
 
 	<!-- ***************************************JS************************************* -->
 
-	<script type="text/javascript" src="librerias/alertify/lib/alertify.js"></script>
-	<script type="text/javascript" src="librerias/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="librerias/select2/js/select2.min.js"></script>
-	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="librerias/js/fancywebsocket.js"></script>
+	<script type="text/javascript" src="../../librerias/alertify/lib/alertify.js"></script>
+	<script type="text/javascript" src="../../librerias/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../librerias/bootstrap4/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../librerias/select2/js/select2.min.js"></script>
+	<script type="text/javascript" src="../../librerias/bootstrap4/js/bootstrap.bundle.min.js"></script>
+	<!-- <script type="text/javascript" src="../../librerias/js/fancywebsocket.js"></script> -->
 <!-- 	<script type="text/javascript" src="librerias/jqueryPlugintipsy/js/jquery.tipsy.js"></script> -->
 
-	
+	<?php 
+		require_once("../../models/conexion.php");
+		$o= new Conexion();
+	 ?>
 
 	
 
@@ -38,7 +41,7 @@
 		<header>
 			<div class="cabecera">
 				<div class="cabezal-menu">
-					<img class="img-logo" src="librerias/img/uni.png">
+					<img class="img-logo" src="../../librerias/img/uni.png">
 					<div class="nom-titulo">
 						HORARIOS
 						<br>
@@ -55,21 +58,21 @@
 				<nav>
 				<ul class="nav">
 					<!-- <li class="titulo-lista">PRINCIPAL</li> -->
-					<li><a href="index.php"><i class="icono izquierda fas fa-registered"></i>Registrar</a></li>
-					<li><a href="index.php"><i class="icono izquierda fas fa-arrows-alt"></i>Cruces</a></li>
+					<li><a href="../../index.php"><i class="icono izquierda fas fa-registered"></i>Registrar</a></li>
+					<li><a href="../../index.php"><i class="icono izquierda fas fa-arrows-alt"></i>Cruces</a></li>
 					<li class="titulo-lista">VISTAS</li>
 					<li><a href="#" id="link1"><i class="icono izquierda fas fa-eye"></i> Automatico<i class="icono derecha fas fa-chevron-down"></i></a>
 						<ul>
-							<li><a href="docentes.php"></i>DOCENTES</a></li>
-							<li><a href="aulas.php">AULAS</a></li>
-							<li><a href="cursos.php">CURSOS</a></li>
+							<li><a href="../../docentes.php"></i>DOCENTES</a></li>
+							<li><a href="../../aulas.php">AULAS</a></li>
+							<li><a href="../../cursos.php">CURSOS</a></li>
 						</ul>
 					</li>
 					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> Manual <i class="icono derecha fas fa-chevron-down"></i></a>
 						<ul>
-							<li><a href="docentes.php">DOCENTES</a></li>
-							<li><a href="aulas.php">AULAS</a></li>
-							<li><a href="cursos.php">CURSOS</a></li>
+							<li><a href="../../docentes.php">DOCENTES</a></li>
+							<li><a href="../../aulas.php">AULAS</a></li>
+							<li><a href="../../cursos.php">CURSOS</a></li>
 						</ul>
 
 					</li>
@@ -81,18 +84,36 @@
 				</ul>
 			</nav>
 			</div>
-
-			
-
-		</header>
-
+		</header>		
 		
 		<br>
+
+		<center>
+							<select id="select-cursos" class="select-cursos">
+								<?php 
+									$o->Open(2);
+									$tabla=$o->Mostrar("docentes","apePaterno",2);
+									foreach($tabla as $a)
+									{
+								?>	
+									<option value="<?php echo $a->codDocente; ?>">
+										
+											<?php echo $a->apePaterno." ".$a->apeMaterno.", ".$a->nombres; ?>
+										
+									</option>
+								<?php  
+									}
+									$o->Close(2);	
+								?>
+							</select>
+		</center>
+
           <div id="tabla" class="container" style="margin-top: 3%;">
 
 			
 
 		</div>
+
 
 
 	<script type="text/javascript">
@@ -181,10 +202,77 @@
 
     </style>
 		
-	<script type="text/javascript" src="librerias/js/comun.js" >
-
+	<script type="text/javascript" src="../../librerias/js/comun.js" >
+		
 	</script>
 
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#select-cursos").change(function(){
+				$("#select-cursos option:selected").each(function(){
+					iddocente=$(this).val();
+					$.post("../../anexos/docentes/ObtenerHorariosDocentesManual.php",{iddocente:iddocente},
+						function(data){
+						var hdocentes=JSON.parse(data);
+						
+							llenarTablaDocente(hdocentes);
+						
+					});
+				})
+			})
+			
+		});
+
+		var medida;
+
+		$(window).resize(function(){
+			if($(window).width()!=medida)
+			{
+				if ($(window).width()<=560)
+				{
+					
+					$("#select-cursos").select2({
+							width: '260px'
+					});
+
+				}
+				else{
+					$("#select-cursos").select2({
+							width: '400px'
+					});
+				}
+				medida=$(window).width();
+			}
+		});
+
+		// ************************************************
+
+		$(document).ready(function(){
+				$("#select-cursos").select2({
+					 width: '240px',
+				});
+			});
+
+		$(document).ready(function(){
+
+			if ($(window).width()<=560)
+			{
+				
+				$("#select-cursos").select2({
+						width: '260px'
+				});
+			
+
+			}
+			else{
+				$("#select-cursos").select2({
+						width: '400px'
+				});
+			}
+		});
+	</script>
+	<script type="text/javascript" src="../../librerias/js/manual/docentes.js"></script>
 
 </body>
 
