@@ -51,3 +51,7 @@ th, tr{
 .hora{
   font-weight: bold;
 }
+
+.tabla-docentes-manual{
+  width: 100%;
+}

@@ -1,24 +1,33 @@
 
-var camposDocentes=new Array();
+var camposAulas=new Array();
 var contador=0;
 var canhoras=0;
 
 
-function llenarTablaDocente(jsondatos){
+function llenarTablaAulas(jsondatos){
 
-	if(camposDocentes[0])
+	if(camposAulas[0])
 	{
-		limpiarCajas(camposDocentes);
+		limpiarCajas(camposAulas);
 	}
 	var cantidad=Object.keys(jsondatos).length;
-
 	if(cantidad>=1)
 	{
-		$("#nomdocente").html(jsondatos[0]["apePaterno"]+jsondatos[0]["apeMaterno"]+", "+jsondatos[0]["nombres"]+" / "+jsondatos[0]["codDocente"]);
+	if(jsondatos[0]["taburete"]=="0")
+	{
+		var taburete="NO";
+	}
+	else
+	{
+		var taburete="SI";
+	}
+
+	$("#nomaula").html("AULA: "+jsondatos[0]["codAula"]);
+	$("#caracteristica").html("Capacidad "+jsondatos[0]['capacidad']+" sillas <br> Con Pizarra "+jsondatos[0]["pizarra"]+" y "+taburete+" tiene taburete");
 	console.log(jsondatos);
 	console.log(jsondatos[0]['idHorarios']);
 
-	
+	var cantidad=Object.keys(jsondatos).length;
 	var dia;
 	
 	for(i=0;i<cantidad;i++)
@@ -51,40 +60,36 @@ function llenarTablaDocente(jsondatos){
 		while(hinicio<hfinal)
 		{	
 			
-			var celda = $("#d"+hinicio+dia).html();
+			var celda = $("#a"+hinicio+dia).html();
 			if(celda=="")
 			{
-				$("#d"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"/"+jsondatos[i]['codAula']+"<br>");
-				$("#d"+hinicio+""+dia).addClass("pintado-true");
+				$("#a"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"<br>"+jsondatos[i]['apePaterno']+", "+jsondatos[i]['nombres']+"<br>");
+				$("#a"+hinicio+""+dia).addClass("pintado-true");
 				canhoras++;
 			}
 			else
 			{
-				$("#d"+hinicio+""+dia).removeClass("pintado-true");
-				$("#d"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"/"+jsondatos[i]['codAula']+"<br>");
-				$("#d"+hinicio+""+dia).addClass("pintado-false");
+				$("#a"+hinicio+""+dia).removeClass("pintado-true");
+				$("#a"+hinicio+""+dia).append(jsondatos[i]['codCurso']+jsondatos[i]['secCurso']+"<br>"+jsondatos[i]['apePaterno']+", "+jsondatos[i]['nombres']+"<br>");
+				$("#a"+hinicio+""+dia).addClass("pintado-false");
 				canhoras++;
 			}
 
-			camposDocentes[contador]="#d"+hinicio+""+dia;
+			camposAulas[contador]="#a"+hinicio+""+dia;
 			hinicio++;
 			contador++;
-			$("#horas").html(canhoras);
 		}
 	}
 	contador=0;
 	canhoras=0;
 	}
-
-	
-
 }
 
 
 function limpiarCajas(camposllenos){
 
-	$("#nomdocente").html("");
-	$("#horas").html("");
+	$("#nomaula").html("");
+	$("#caracteristica").html("");
 	while(contador<camposllenos.length)
 	{
 		$(camposllenos[contador]).removeClass("pintado-true");

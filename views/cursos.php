@@ -66,9 +66,9 @@
 					</li>
 					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> MANUAL <i class="icono derecha fas fa-chevron-down"></i></a>
 						<ul>
-							<li><a href="docentes.php">DOCENTES</a></li>
-							<li><a href="aulas.php">AULAS</a></li>
-							<li><a href="cursos.php">CURSOS</a></li>
+							<li><a href="views/manual/docentes.php">DOCENTES</a></li>
+							<li><a href="views/manual/aulas.php">AULAS</a></li>
+							<li><a href="views/manual/cursos.php">CURSOS</a></li>
 						</ul>
 
 					</li>
@@ -85,12 +85,15 @@
 
 		</header>
 		<br>
+		<br>
+		<br>
 
           <div id="tabla" class="container">
 
 			
 
 		</div>
+		<br>
 
 
 	<script type="text/javascript">

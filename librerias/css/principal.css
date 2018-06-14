@@ -167,6 +167,7 @@ nav{
 	color: #FFF;
 	/*border-top: 0.1px solid #494949;*/
 	border-right: 1px solid #128AD7;
+	text-decoration: none;
 }
 .nav>li>ul{
 	margin-left: -5px;
@@ -186,10 +187,10 @@ nav{
 
 @media screen and (max-width:700px )
 {
-	.nav{
+	/*.nav{
 		display: none;
-	}
-}
+	}*/
+}	
 
 /* ***************COMBO CURSOS**************** */
 

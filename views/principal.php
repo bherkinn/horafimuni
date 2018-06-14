@@ -4,7 +4,7 @@
 <head>
 
 	<meta charset="UTF-8">
-	<title>Registrar</title>
+	<title>Principal</title>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -63,13 +63,16 @@
 							<li><a href="docentes.php"></i>DOCENTES</a></li>
 							<li><a href="aulas.php">AULAS</a></li>
 							<li><a href="cursos.php">CURSOS</a></li>
+							<li><a href="views/modulo1.php">MODULO 1</a></li>
+							<li><a href="views/modulo2.php">MODULO 2</a></li>
+							<li><a href="views/modulo3.php">MODULO 3</a></li>
 						</ul>
 					</li>
 					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> Manual <i class="icono derecha fas fa-chevron-down"></i></a>
 						<ul>
 							<li><a href="views/manual/docentes.php">DOCENTES</a></li>
-							<li><a href="aulas.php">AULAS</a></li>
-							<li><a href="cursos.php">CURSOS</a></li>
+							<li><a href="views/manual/aulas.php">AULAS</a></li>
+							<li><a href="views/manual/cursos.php">CURSOS</a></li>
 						</ul>
 
 					</li>

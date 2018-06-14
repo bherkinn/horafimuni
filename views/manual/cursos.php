@@ -4,14 +4,14 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>M-Docentes</title>
+	<title>M-Cursos</title>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<!-- **************************************CSS************************************* -->
 	<link rel="stylesheet" type="text/css" href="../../librerias/bootstrap4/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/css/principal.css">
-	<link rel="stylesheet" type="text/css" href="../../librerias/css/docentes.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/css/cursos.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/select2/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/alertify/themes/alertify.core.css">
@@ -89,22 +89,22 @@
 		<br>
 
 		<center>
-							<select id="select-docentes" class="select-cursos">
+							<select id="select-cursos" class="select-cursos">
 								<?php 
-									$o->Open(2);
-									$tabla=$o->Mostrar("docentes","apePaterno",2);
-									foreach($tabla as $a)
-									{
-								?>	
-									<option value="<?php echo $a->codDocente; ?>">
-										
-											<?php echo $a->apePaterno." ".$a->apeMaterno.", ".$a->nombres; ?>
-										
-									</option>
-								<?php  
-									}
-									$o->Close(2);	
-								?>
+								$o->Open(2);
+								$tabla=$o->Mostrar("cursos","codCurso",2);
+								foreach($tabla as $a)
+								{
+							?>	
+								<option value="<?php echo $a->codCurso; ?>">
+									
+										<?php echo $a->codCurso." - ".$a->nomCurso; ?>
+									
+								</option>
+							<?php  
+								}
+								$o->Close(2);	
+							?>
 							</select>
 		</center>
 		<br>
@@ -125,25 +125,24 @@
 			var dias = new  Array('LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADOS','DOMINGOS');
 			var cantidad="";
 			var tabla=document.createElement("table");
-			tabla.setAttribute("id","tabla-docentes");
+			tabla.setAttribute("id","tabla-cursos");
 			tabla.setAttribute("class","table-responsive-horario border rounded");
 			tabla.setAttribute("border","3");
 		    //tabla.style.border="1px solid gray";
 		    var content=document.getElementById("tabla");
 		    content.appendChild(tabla);
 		    var titulo="UNIVERSIDAD NACIONAL DE INGENIERIA - FACULTAD DE INGENIERIA MECANICA - COMISION DE HORARIOS";
-		    var carga="CARGA HORARIA/SEM.";
 			
 			horainicial=hora;
-			$("#tabla-docentes").append("<tr><td colspan='5' class='cabecera-tabla ca'>"+titulo+"</td><td class='ca'>"+carga+"</td><td rowspan='2'></td></tr>");
-			$("#tabla-docentes").append("<tr><td id='nomdocente' colspan='5' class='cabecera-tabla2'></td><td id='horas' class='hora'></td></tr>");
+			$("#tabla-cursos").append("<tr><td colspan='6' class='cabecera-tabla ca'>"+titulo+"</td><td rowspan='2'></td></tr>");
+			$("#tabla-cursos").append("<tr><td id='nomcurso' colspan='6' class='cabecera-tabla2'></td></tr>");
 			for(i=0;i<filas;i++){
-				$("#tabla-docentes").append("<tr>");
+				$("#tabla-cursos").append("<tr>");
 				for(u=0;u<columnas;u++)
 				{
 					if(i==0)
 					{
-						$("#tabla-docentes").append("<th class='horas' id='"+u+"'></th>");
+						$("#tabla-cursos").append("<th class='horas' id='"+u+"'></th>");
 						if(u!=0)
 						{
 							$("#"+u).html(dias[u-1]);
@@ -151,17 +150,17 @@
 					}
 					else
 					{	
-						$("#tabla-docentes").append("<td id='d"+(horainicial-1)+""+u+"'></td>");
+						$("#tabla-cursos").append("<td id='c"+(horainicial-1)+""+u+"'></td>");
 
 						if(u!=0)
 						{
-							$("#d"+(horainicial-1)+""+u).addClass("contenido-tabla");
+							$("#c"+(horainicial-1)+""+u).addClass("contenido-tabla");
 
 							
 						}
 						else
 						{
-							$("#d"+(horainicial-1)+""+u).addClass("horas");
+							$("#c"+(horainicial-1)+""+u).addClass("horas");
 
 							inicial=hora.toString().length;
 							final=(hora+1).toString().length;
@@ -169,17 +168,17 @@
 
 							if(inicial>1&&final>1)
 							{
-								$("#d"+(horainicial-1)+""+u).html(hora+"-"+(hora+1));
+								$("#c"+(horainicial-1)+""+u).html(hora+"-"+(hora+1));
 							}
 							
 							if(inicial==1&&final>1)
 							{
-								$("#d"+(horainicial-1)+""+u).html("0"+hora+"-"+(hora+1));
+								$("#c"+(horainicial-1)+""+u).html("0"+hora+"-"+(hora+1));
 							}
 
 							if(inicial==1&&final==1)
 							{
-								$("#d"+(horainicial-1)+""+u).html("0"+hora+"-"+"0"+(hora+1));
+								$("#c"+(horainicial-1)+""+u).html("0"+hora+"-"+"0"+(hora+1));
 							}
 							
 							
@@ -192,7 +191,7 @@
 
 				horainicial++;
 
-				$("#tabla-docentes").append("</tr>");
+				$("#tabla-cursos").append("</tr>");
 				$("#0").html("HORAS");
 			}
 
@@ -202,8 +201,6 @@
 		
 	</script>
 
-
-    </style>
 		
 	<script type="text/javascript" src="../../librerias/js/comun.js" >
 		
@@ -212,29 +209,29 @@
 	<script type="text/javascript">
 
 		$(document).ready(function(){
-			iddocente=$("#select-docentes").val();
-			$.post("../../anexos/docentes/ObtenerHorariosDocentesManual.php",{iddocente:iddocente},
+			idcurso=$("#select-cursos").val();
+			$.post("../../anexos/cursos/ObtenerHorariosCursosManual.php",{idcurso:idcurso},
 						function(data){
-						var hdocentes=JSON.parse(data);
+						var hcursos=JSON.parse(data);
 						
-							llenarTablaDocente(hdocentes);
+							llenarTablaCursos(hcursos);
 						
-					});
+			});
 		});
 
 		$(document).ready(function(){
-			$("#select-docentes").change(function(){
-				$("#select-docentes option:selected").each(function(){
-					iddocente=$(this).val();
-					$.post("../../anexos/docentes/ObtenerHorariosDocentesManual.php",{iddocente:iddocente},
+			$("#select-cursos").change(function(){
+				$("#select-cursos option:selected").each(function(){
+					idcurso=$(this).val();
+					$.post("../../anexos/cursos/ObtenerHorariosCursosManual.php",{idcurso:idcurso},
 						function(data){
-						var hdocentes=JSON.parse(data);
+						var hcursos=JSON.parse(data);
 						
-							llenarTablaDocente(hdocentes);
+							llenarTablaCursos(hcursos);
 						
 					});
-				})
-			})
+				});
+			});
 			
 		});
 
@@ -246,13 +243,13 @@
 				if ($(window).width()<=560)
 				{
 					
-					$("#select-docentes").select2({
+					$("#select-cursos").select2({
 							width: '260px'
 					});
 
 				}
 				else{
-					$("#select-docentes").select2({
+					$("#select-cursos").select2({
 							width: '400px'
 					});
 				}
@@ -263,7 +260,7 @@
 		// ************************************************
 
 		$(document).ready(function(){
-				$("#select-docentes").select2({
+				$("#select-cursos").select2({
 					 width: '240px',
 				});
 			});
@@ -273,20 +270,20 @@
 			if ($(window).width()<=560)
 			{
 				
-				$("#select-docentes").select2({
+				$("#select-cursos").select2({
 						width: '260px'
 				});
 			
 
 			}
 			else{
-				$("#select-docentes").select2({
+				$("#select-cursos").select2({
 						width: '400px'
 				});
 			}
 		});
 	</script>
-	<script type="text/javascript" src="../../librerias/js/manual/docentes.js"></script>
+	<script type="text/javascript" src="../../librerias/js/manual/cursos.js"></script>
 
 </body>
 

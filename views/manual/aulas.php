@@ -1,33 +1,37 @@
+
  <!DOCTYPE html>
 <html lang="es">
 
 <head>
 	<meta charset="UTF-8">
-	<title>Aulas</title>
+	<title>M-Aulas</title>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<!-- **************************************CSS************************************* -->
-	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="librerias/css/principal.css">
-	<link rel="stylesheet" type="text/css" href="librerias/css/aulas.css">
-	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
-	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
-	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.default.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/css/principal.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/css/aulas.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/select2/css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/alertify/themes/alertify.core.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/alertify/themes/alertify.default.css">
 
 
 	<!-- ***************************************JS************************************* -->
 
-	<script type="text/javascript" src="librerias/alertify/lib/alertify.js"></script>
-	<script type="text/javascript" src="librerias/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="librerias/select2/js/select2.min.js"></script>
-	<script type="text/javascript" src="librerias/bootstrap4/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="librerias/js/fancywebsocket.js"></script>
+	<script type="text/javascript" src="../../librerias/alertify/lib/alertify.js"></script>
+	<script type="text/javascript" src="../../librerias/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../librerias/bootstrap4/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../librerias/select2/js/select2.min.js"></script>
+	<script type="text/javascript" src="../../librerias/bootstrap4/js/bootstrap.bundle.min.js"></script>
+	<!-- <script type="text/javascript" src="../../librerias/js/fancywebsocket.js"></script> -->
 <!-- 	<script type="text/javascript" src="librerias/jqueryPlugintipsy/js/jquery.tipsy.js"></script> -->
 
-	
+	<?php 
+		require_once("../../models/conexion.php");
+		$o= new Conexion();
+	 ?>
 
 	
 
@@ -37,7 +41,7 @@
 		<header>
 			<div class="cabecera">
 				<div class="cabezal-menu">
-					<img class="img-logo" src="librerias/img/uni.png">
+					<img class="img-logo" src="../../librerias/img/uni.png">
 					<div class="nom-titulo">
 						HORARIOS
 						<br>
@@ -54,21 +58,21 @@
 				<nav>
 				<ul class="nav">
 					<!-- <li class="titulo-lista">PRINCIPAL</li> -->
-					<li><a href="index.php"><i class="icono izquierda fas fa-registered"></i>Registrar</a></li>
-					<li><a href="index.php"><i class="icono izquierda fas fa-arrows-alt"></i>Cruces</a></li>
+					<li><a href="../../index.php"><i class="icono izquierda fas fa-registered"></i>Registrar</a></li>
+					<li><a href="../../index.php"><i class="icono izquierda fas fa-arrows-alt"></i>Cruces</a></li>
 					<li class="titulo-lista">VISTAS</li>
 					<li><a href="#" id="link1"><i class="icono izquierda fas fa-eye"></i> Automatico<i class="icono derecha fas fa-chevron-down"></i></a>
 						<ul>
-							<li><a href="docentes.php"></i>DOCENTES</a></li>
-							<li><a href="aulas.php">AULAS</a></li>
-							<li><a href="cursos.php">CURSOS</a></li>
+							<li><a href="../../docentes.php"></i>DOCENTES</a></li>
+							<li><a href="../../aulas.php">AULAS</a></li>
+							<li><a href="../../cursos.php">CURSOS</a></li>
 						</ul>
 					</li>
-					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> Manual<i class="icono derecha fas fa-chevron-down"></i></a>
+					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> Manual <i class="icono derecha fas fa-chevron-down"></i></a>
 						<ul>
-							<li><a href="views/manual/docentes.php">DOCENTES</a></li>
-							<li><a href="views/manual/aulas.php">AULAS</a></li>
-							<li><a href="views/manual/cursos.php">CURSOS</a></li>
+							<li><a href="../../views/manual/docentes.php">DOCENTES</a></li>
+							<li><a href="../../views/manual/aulas.php">AULAS</a></li>
+							<li><a href="../../views/manual/cursos.php">CURSOS</a></li>
 						</ul>
 
 					</li>
@@ -80,20 +84,39 @@
 				</ul>
 			</nav>
 			</div>
-
-			
-
-		</header>
-		<br>
-		<br>
+		</header>		
+		
 		<br>
 
+		<center>
+							<select id="select-aulas" class="select-cursos">
+								<?php 
+								$o->Open(2);
+								$tabla=$o->Mostrar("aulas","aula",2);
+								foreach($tabla as $a)
+								{
+							?>	
+								<option value="<?php echo $a->aula; ?>">
+									
+										<?php echo $a->aula;
+										?>
+									
+								</option>
+							<?php  
+								}
+								$o->Close(2);	
+							?>
+							</select>
+		</center>
+		<br>
+		<br>
           <div id="tabla" class="container">
 
 			
 
 		</div>
 		<br>
+
 
 
 	<script type="text/javascript">
@@ -179,11 +202,51 @@
 		
 	</script>
 
-	<script type="text/javascript" src="librerias/js/comun.js" >
-			
+		
+	<script type="text/javascript" src="../../librerias/js/comun.js" >
+		
 	</script>
 
+	<script type="text/javascript">
 
+		$(document).ready(function(){
+			idaula=$("#select-aulas").val();
+			$.post("../../anexos/aulas/ObtenerHorariosAulasManual.php",{idaula:idaula},
+						function(data){
+						var haulas=JSON.parse(data);
+						
+							llenarTablaAulas(haulas);
+						
+			});
+		});
+
+		$(document).ready(function(){
+			$("#select-aulas").change(function(){
+				$("#select-aulas option:selected").each(function(){
+					idaula=$(this).val();
+					$.post("../../anexos/aulas/ObtenerHorariosAulasManual.php",{idaula:idaula},
+						function(data){
+						var haulas=JSON.parse(data);
+						
+							llenarTablaAulas(haulas);
+						
+					});
+				});
+			});
+			
+		});
+
+
+		// ************************************************
+
+		$(document).ready(function(){
+				$("#select-aulas").select2({
+					 width: '160px',
+				});
+			});
+
+	</script>
+	<script type="text/javascript" src="../../librerias/js/manual/aulas.js"></script>
 
 </body>
 
