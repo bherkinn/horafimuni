@@ -222,6 +222,21 @@
 			}
 		}
 
+		public function Modulos($ciclo,$modulo)
+		{
+			try{
+				$this->Conectar(1);
+				$this->memoria=$this->con1->query("select * from basehorarios WHERE $ciclo LIKE '%".$modulo."%'");
+
+				$datos=$this->memoria->fetchAll(PDO::FETCH_OBJ);
+				$this->Close(1);
+				return $datos;
+			}
+			catch(Exception $a){
+				echo "error".$a->getMessage();
+			}
+		}
+
 
 
 

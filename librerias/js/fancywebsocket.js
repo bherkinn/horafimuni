@@ -80,6 +80,14 @@ var FancyWebSocket = function(url)
 						llenarTablaCursos(hcursos);
 
 					});	
+
+					$.post("anexos/ObtenerHorariosModulos.php",{idfila:fila},
+						function(data){
+						var hciclos=JSON.parse(data);
+
+						distribuirDatos(hciclos);
+
+					});	
 				}
 
 				
@@ -125,9 +133,93 @@ var datos="";
 var camposDocentes=new Array();
 var camposAulas=new Array();
 var camposCursos=new Array();
+var camposModulo1=new Array();
+/*---------------------------------*/
+var ciclos=new Array();
+var grupos=new Array();
+var cciclo=0;
+/*---------------------------------*/
 var contador=0;
 var canhoras=0;
 
+
+function distribuirDatos(datos){
+
+	for(i=1;i<=10;i++)
+	{	
+		if(datos[0]["c"+i]!="")
+		{	
+			console.log("-----------------------------------------------------");
+			console.log(datos[0]["c"+i]);
+
+			longcadena=datos[0]["c"+i].length;
+
+			for(u=0;u<longcadena;u++)
+			{
+				ciclos[cciclo]="c"+i;
+				grupos[cciclo]=datos[0]["c"+i].substr(u,1);
+				alert(ciclos[cciclo]+" - "+grupos[cciclo]);
+				cciclo++;
+				
+			}
+
+			// if()
+			// if(datos[0]["c"+i].indexOf("-")!=-1)
+			// {
+			// 	var ubicacion1=datos[0]["c"+i].indexOf("-");
+			// 	console.log("la ubicaion 1 es "+ubicacion1);
+			// 	ciclos[cciclo]="c"+i;
+			// 	grupos[cciclo]=datos[0]["c"+i].substr(0,ubicacion1);
+			// 	alert(ciclos[cciclo]+" - "+grupos[cciclo]);
+			// 	cciclo++;
+
+			// 	if(datos[0]["c"+i].indexOf("-",2)!=-1)
+			// 	{
+			// 		var ubicacion2=datos[0]["c"+i].indexOf("-",2);
+			// 		console.log("la ubicaion 2 es "+ubicacion2);
+			// 		// -------------------------------------------
+			// 		ciclos[cciclo]="c"+i;
+			// 		grupos[cciclo]=datos[0]["c"+i].substr(ubicacion2-1,1);
+			// 		alert(ciclos[cciclo]+" - "+grupos[cciclo]);
+			// 		cciclo++;
+
+			// 		ciclos[cciclo]="c"+i;
+			// 		grupos[cciclo]=datos[0]["c"+i].substr(ubicacion2+1,1);
+			// 		alert(ciclos[cciclo]+" - "+grupos[cciclo]);
+			// 		cciclo++;
+			// 	}
+			// 	else
+			// 	{
+			// 		ciclos[cciclo]="c"+i;
+			// 		grupos[cciclo]=datos[0]["c"+i].substr(ubicacion1+1,1);
+			// 		alert(ciclos[cciclo]+" - "+grupos[cciclo]);
+			// 		cciclo++;
+			// 	}
+				
+			// }
+			// else
+			// {
+			// 	ciclos[cciclo]="c"+i;
+			// 	grupos[cciclo]=datos[0]["c"+i];
+			// 	alert(ciclos[cciclo]+" - "+grupos[cciclo]);
+			// 	cciclo++;
+			// }
+			
+		}
+		
+	}
+
+	//$.post("anexos")
+	
+	cciclo=0;
+	ciclos=[];
+	grupos=[];
+}
+
+function llenarTablaModulo1(jsondatos)
+{
+
+}
 function llenarTablaCursos(jsondatos){
 
 	if(camposCursos[0])
