@@ -11,7 +11,8 @@
 	<!-- **************************************CSS************************************* -->
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap4/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="librerias/css/principal.css">
-	<link rel="stylesheet" type="text/css" href="librerias/css/docentes.css">
+	<link rel="stylesheet" type="text/css" href="librerias/css/comun-tablas.css">
+	<link rel="stylesheet" type="text/css" href="librerias/css/modulos.css">
 	<link rel="stylesheet" type="text/css" href="librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/select2/css/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertify/themes/alertify.core.css">
@@ -115,7 +116,7 @@
 			
 			horainicial=hora;
 			$("#tabla-modulo1").append("<tr><td colspan='6' class='cabecera-tabla ca'>"+titulo+"</td><td rowspan='2'></td></tr>");
-			$("#tabla-modulo1").append("<tr><td id='datos' colspan='6' class='cabecera-tabla2'></td></td></tr>");
+			$("#tabla-modulo1").append("<tr><td id='m3datos' colspan='6' class='cabecera-tabla2'></td></td></tr>");
 			for(i=0;i<filas;i++){
 				$("#tabla-modulo1").append("<tr>");
 				for(u=0;u<columnas;u++)
@@ -174,7 +175,7 @@
 				$("#tabla-modulo1").append("</tr>");
 				$("#0").html("HORAS");
 			}
-
+			$("#tabla").append("<div id='aviso'  class='rotar'>Seleccione</div>");
 		}
 
 			CrearTabla(16,7,7);

@@ -60,6 +60,9 @@ var FancyWebSocket = function(url)
 
 				if(fila)
 				{
+					$("#aviso").removeClass("rotar");
+					$("#aviso").addClass("deshabilitar");
+					
 					$.post("anexos/docentes/ObtenerHorariosDocentes.php",{idfila:fila},
 						function(data){
 						var hdocentes=JSON.parse(data);
@@ -218,13 +221,12 @@ function llenarModulos(ciclo,grupo,idmodulo)
 {
 	$.post("anexos/modulos/ObtenerHorariosModulos.php",{ciclo:ciclo,grupo:grupo},
 	function(data){
-	// alert(idmodulo);
 	hmodulos=JSON.parse(data);
-	llenarTablaModulo(hmodulos,idmodulo);
+	llenarTablasModulos(hmodulos,idmodulo);
 	});
 }
 
-function llenarTablaModulo(jsondatos,idmodulo)
+function llenarTablasModulos(jsondatos,idmodulo)
 {
 	//alert(identificador);
 	// if(camposModulo[0])
@@ -290,6 +292,7 @@ function llenarTablaModulo(jsondatos,idmodulo)
 	}
 	canhoras=0;
 }
+
 
 function llenarTablaCursos(jsondatos){
 
@@ -364,6 +367,7 @@ function llenarTablaCursos(jsondatos){
 			hinicio++;
 			contador++;
 		}
+
 	}
 	contador=0;
 	canhoras=0;
