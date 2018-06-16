@@ -222,11 +222,11 @@
 			}
 		}
 
-		public function Modulos($ciclo,$modulo)
+		public function Modulos($ciclo,$grupo)
 		{
 			try{
 				$this->Conectar(1);
-				$this->memoria=$this->con1->query("select * from basehorarios WHERE $ciclo LIKE '%".$modulo."%'");
+				$this->memoria=$this->con1->query("SELECT horariosfim.basehorarios.*,oeraae2018.aulas.capacidad,oeraae2018.aulas.pizarra,oeraae2018.aulas.taburete,oeraae2018.docentes.apePaterno,oeraae2018.docentes.apeMaterno,oeraae2018.docentes.nombres from horariosfim.basehorarios INNER JOIN oeraae2018.aulas ON horariosfim.basehorarios.codAula=oeraae2018.aulas.aula INNER JOIN oeraae2018.docentes ON horariosfim.basehorarios.codDocente=oeraae2018.docentes.codDocente WHERE horariosfim.basehorarios.".$ciclo." LIKE '%".$grupo."%'");
 
 				$datos=$this->memoria->fetchAll(PDO::FETCH_OBJ);
 				$this->Close(1);

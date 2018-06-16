@@ -63,9 +63,9 @@
 							<li><a href="docentes.php"></i>DOCENTES</a></li>
 							<li><a href="aulas.php">AULAS</a></li>
 							<li><a href="cursos.php">CURSOS</a></li>
-							<li><a href="views/modulo1.php">MODULO 1</a></li>
-							<li><a href="views/modulo2.php">MODULO 2</a></li>
-							<li><a href="views/modulo3.php">MODULO 3</a></li>
+							<li><a href="modulo1.php">MODULO 1</a></li>
+							<li><a href="modulo2.php">MODULO 2</a></li>
+							<li><a href="modulo3.php">MODULO 3</a></li>
 						</ul>
 					</li>
 					<li><a href="#" id="link2"><i class="icono izquierda fas fa-hand-paper"></i> Manual <i class="icono derecha fas fa-chevron-down"></i></a>
