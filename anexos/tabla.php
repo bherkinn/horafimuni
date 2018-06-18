@@ -46,19 +46,19 @@
 		<tr class="tr">
 
 			<td class="comun">
-				<input type="text" id="txtdia" class="txtform form-control" required="">
+				<input type="text" id="txtdia" class="txtform form-control" required="" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txthora" class="txtform form-control">
+				<input type="text" id="txthora" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtcurso" class="txtform form-control" value="<?php echo $curso; ?>" disabled >
+				<input type="text" id="txtcurso" class="txtform form-control" value="<?php echo $curso; ?>" disabled autocomplete="off" >
 			</td>
 			<td class="comun">
-				<input type="text" id="txtseccion" class="txtform form-control">
+				<input type="text" id="txtseccion" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txttp" class="txtform form-control">
+				<input type="text" id="txttp" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
 				
@@ -123,34 +123,34 @@
 				
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc1" class="txtform form-control">
+				<input type="text" id="txtc1" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc2" class="txtform form-control">
+				<input type="text" id="txtc2" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc3" class="txtform form-control">
+				<input type="text" id="txtc3" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc4" class="txtform form-control">
+				<input type="text" id="txtc4" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc5" class="txtform form-control">
+				<input type="text" id="txtc5" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc6" class="txtform form-control">
+				<input type="text" id="txtc6" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc7" class="txtform form-control">
+				<input type="text" id="txtc7" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc8" class="txtform form-control">
+				<input type="text" id="txtc8" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc9" class="txtform form-control">
+				<input type="text" id="txtc9" class="txtform form-control" autocomplete="off">
 			</td>
 			<td class="comun">
-				<input type="text" id="txtc10" class="txtform form-control">
+				<input type="text" id="txtc10" class="txtform form-control" autocomplete="off">
 			</td>
 		</tr>	
 

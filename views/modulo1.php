@@ -88,7 +88,7 @@
 
 		</header>
 
-		
+		<main id="mostrar-menu" class="main-ocultar">
 		<br>
 		<br>
 		<br>
@@ -98,6 +98,7 @@
 
 		</div>
 		<br>
+	</main>
 
 
 	<script type="text/javascript">

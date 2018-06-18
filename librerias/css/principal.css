@@ -25,6 +25,19 @@
 	margin-top: 5px;
 }
 
+.main-mostrar{
+	transition-property: margin-left,width;
+	transition-duration: 0.4s;
+	margin-left: 250px;
+	width: 100%-250px;
+}
+.main-ocultar{
+	transition-property: margin-left,width;
+	transition-duration: 0.4s;
+	margin-left: 0px;
+	width: 100%+250px;
+}
+
 .nom-titulo{
 	margin-top: -70px;
 	text-align: center;

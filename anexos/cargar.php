@@ -20,23 +20,23 @@
 		<tr class="tr" id="<?php echo $indice; ?>">
 
 		<td class="comun">
-			<input type="text" id="txtdia<?php echo $indice;?>" spellcheck="false" name="txtdia" class="i txtform" value="<?php echo $a->dia; ?>" disabled>
+			<input type="text" id="txtdia<?php echo $indice;?>" spellcheck="false" name="txtdia" class="i txtform" value="<?php echo $a->dia; ?>" disabled autocomplete="off">
 		</td>
 
 		<td class="comun">
-			<input type="text" id="txthora<?php echo $indice;?>" spellcheck="false" name="txthora" class="i txtform " value="<?php echo $a->hora; ?>" disabled>
+			<input type="text" id="txthora<?php echo $indice;?>" spellcheck="false" name="txthora" class="i txtform " value="<?php echo $a->hora; ?>" disabled autocomplete="off">
 		</td>
 
 		<td class="comun">
-			<input type="text" id="txtcurso<?php echo $indice;?>" spellcheck="false" name="txtcurso" class="txtform i" value="<?php echo $curso; ?>" disabled >
+			<input type="text" id="txtcurso<?php echo $indice;?>" spellcheck="false" name="txtcurso" class="txtform i" value="<?php echo $curso; ?>" disabled autocomplete="off" >
 		</td>
 
 		<td class="comun">
-			<input type="text" id="txtseccion<?php echo $indice;?>" spellcheck="false" name="txtseccion" class="txtform i" value="<?php echo $a->secCurso; ?>" disabled>
+			<input type="text" id="txtseccion<?php echo $indice;?>" spellcheck="false" name="txtseccion" class="txtform i" value="<?php echo $a->secCurso; ?>" disabled autocomplete="off">
 		</td>
 
 		<td class="comun">
-			<input type="text" id="txttp<?php echo $indice;?>" spellcheck="false" name="txttp" class="txtform i" value="<?php echo $a->teopra; ?>" disabled>
+			<input type="text" id="txttp<?php echo $indice;?>" spellcheck="false" name="txttp" class="txtform i" value="<?php echo $a->teopra; ?>" disabled autocomplete="off">
 		</td>
 
 		<td class="comun" id="aulas">
@@ -95,34 +95,34 @@
 			
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc1" id="txtc1<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c1 ?>" disabled>
+			<input type="text" name="txtc1" id="txtc1<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c1 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc2" id="txtc2<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c2 ?>" disabled>
+			<input type="text" name="txtc2" id="txtc2<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c2 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc3" id="txtc3<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c3 ?>" disabled>
+			<input type="text" name="txtc3" id="txtc3<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c3 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc4" id="txtc4<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c4 ?>" disabled>
+			<input type="text" name="txtc4" id="txtc4<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c4 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc5" id="txtc5<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c5 ?>" disabled>
+			<input type="text" name="txtc5" id="txtc5<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c5 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc6" id="txtc6<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c6 ?>" disabled>
+			<input type="text" name="txtc6" id="txtc6<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c6 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc7" id="txtc7<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c7 ?>" disabled>
+			<input type="text" name="txtc7" id="txtc7<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c7 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc8" id="txtc8<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c8 ?>" disabled>
+			<input type="text" name="txtc8" id="txtc8<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c8 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc9" id="txtc9<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c9 ?>" disabled>
+			<input type="text" name="txtc9" id="txtc9<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c9 ?>" disabled autocomplete="off">
 		</td>
 		<td class="comun">
-			<input type="text" name="txtc10" id="txtc10<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c10 ?>" disabled>
+			<input type="text" name="txtc10" id="txtc10<?php echo $indice; ?>" spellcheck="false" class="txtform i" value="<?php echo $a->c10 ?>" disabled autocomplete="off">
 		</td>
 	</tr>
 

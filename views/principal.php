@@ -90,7 +90,7 @@
 		</header>
 
 		
-
+		<main id="mostrar-menu" class="main-ocultar">
 
 		<br>
 			<ul id="menucontextual" class="dropdown-menu-modificado menu-contextual" style="width: 10px;">
@@ -163,8 +163,8 @@
 			</div>
 			<br>
 
-		
-			
+		</main>
+
 		<script type="text/javascript" src="librerias/js/principal.js" >
 			$(document).ready(function(){
 				$("#select-cursos").select2({
