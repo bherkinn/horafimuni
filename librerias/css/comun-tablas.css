@@ -18,6 +18,7 @@
 	min-width: 170px;
 	height: 45px;
   text-align: center
+
 }
 th, tr{
 	text-align: center;
@@ -25,19 +26,20 @@ th, tr{
 .pintado-true{
   background-color: #94E781;
   color:#000;
-  font-size: 12px;
+  font-size: 10px;
   vertical-align: middle;
 }
 .pintado-false{
   background-color: #F15757;
   color:#000;
-  font-size: 12px;
+  font-size: 10px;
   vertical-align: middle;
 }
 .ca{
   height: 20px;
   font-size: 12px;
 }
+
 .cabecera-tabla{
   font-weight: bold;
 }
@@ -69,7 +71,7 @@ th, tr{
       color:#F88989;
 
     }
-    
+
   .deshabilitar{
     display: none;
   }

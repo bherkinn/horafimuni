@@ -62,7 +62,13 @@ var FancyWebSocket = function(url)
 				{
 					$("#aviso").removeClass("rotar");
 					$("#aviso").addClass("deshabilitar");
-					
+
+					for(u=1;u<=3;u++)
+					{
+						$("#m"+u+"vacio").removeClass("rotar");
+						$("#m"+u+"vacio").addClass("deshabilitar");
+					}
+
 					$.post("anexos/docentes/ObtenerHorariosDocentes.php",{idfila:fila},
 						function(data){
 						var hdocentes=JSON.parse(data);
@@ -89,26 +95,13 @@ var FancyWebSocket = function(url)
 						var hciclos=JSON.parse(data);
 
 						distribuirDatos(hciclos);
+						modulosvacios(cciclo);
 
 					});	
+
+					
 				}
 
-				
-				
-	// 				break;
-	// 				case '2':
-	// 				actualiza_solicitud(message);
-	// 				break;
-					
-	// 			}
-	// 			//aqui se ejecuta toda la accion
-				
-				
-				
-				
-				
-				
-	//		}
 	}
 };
 
@@ -119,7 +112,7 @@ function send( text )
 }
 $(document).ready(function() 
 {
-	Server = new FancyWebSocket('ws://172.20.5.137:12345');
+	Server = new FancyWebSocket('ws://192.168.0.201:12345');
     Server.bind('open', function()
 	{
     });
@@ -171,6 +164,7 @@ function distribuirDatos(datos){
 					ciclos[cciclo]="c"+i;
 					grupos[cciclo]=datos[0]["c"+i].substr(u,1);
 					idmodulo="m"+(cciclo+1);
+					numerociclo=i;
 					//alert(idmodulo);
 					if(camposModulo[0])
 					{
@@ -178,7 +172,7 @@ function distribuirDatos(datos){
 						contadormodulo=0;
 					}
 
-					llenarModulos(ciclos[cciclo],grupos[cciclo],idmodulo)
+					llenarModulos(ciclos[cciclo],grupos[cciclo],idmodulo,numerociclo)
 
 					cciclo++;
 				}
@@ -189,57 +183,66 @@ function distribuirDatos(datos){
 		}
 		
 	}
-					// $.post("anexos/modulos/ObtenerHorariosModulos.php",{ciclo:ciclos[cciclo],grupo:grupos[cciclo]},
-					// function(data){
-					// alert(cciclo);
-					// hmodulos=JSON.parse(data);
-					// llenarTablaModulo(hmodulos,"m"+(cciclo+1));
-					// });
-			
-					// $.post("anexos/modulos/ObtenerHorariosModulos.php",{ciclo:ciclos[0],grupo:grupos[0]},
-					// function(data1){
-					// hmodulos1=JSON.parse(data1);
-					// llenarTablaModulo1(hmodulos1);
-					// });
-				
-				
-					// $.post("anexos/modulos/ObtenerHorariosModulos.php",{ciclo:ciclos[1],grupo:grupos[1]},
-					// function(data2){
-					// hmodulos2=JSON.parse(data2);
-					// llenarTablaModulo2(hmodulos2);
-					// });
-				
-					// $.post("anexos/modulos/ObtenerHorariosModulos.php",{ciclo:ciclos[2],grupo:grupos[2]},
-					// function(data3){
-					// hmodulos3=JSON.parse(data3);
-					// llenarTablaModulo3(hmodulos3);
-					// });
-
 	
 }
-function llenarModulos(ciclo,grupo,idmodulo)
+
+function modulosvacios(vacios){
+	if(vacios<3){
+			while((vacios+1)<=3)
+			{
+				vacios++;
+				$("#m"+vacios+"vacio").removeClass("deshabilitar");
+				$("#m"+vacios+"vacio").addClass("rotar");
+				
+			}
+	}
+}
+function llenarModulos(ciclo,grupo,idmodulo,numerociclo)
 {
 	$.post("anexos/modulos/ObtenerHorariosModulos.php",{ciclo:ciclo,grupo:grupo},
 	function(data){
 	hmodulos=JSON.parse(data);
-	llenarTablasModulos(hmodulos,idmodulo);
+	llenarTablasModulos(hmodulos,idmodulo,numerociclo,grupo);
 	});
 }
 
-function llenarTablasModulos(jsondatos,idmodulo)
+function fecha()
 {
-	//alert(identificador);
-	// if(camposModulo[0])
-	// {
-	// 	limpiarCajas(camposModulo);
-	// }
+	var a=new Date();
+	var dia=a.getDate();
+	var mes=(a.getMonth()+1);
+	var año=a.getFullYear();
 
+	var digitos_dia=dia.toString().length;
+	var digitos_mes=mes.toString().length;
+	if(digitos_dia<2)
+	{
+		dia="0"+dia;
+	}
+
+	if(digitos_mes<2)
+	{
+		mes="0"+mes;
+	}
+
+	var fechafinal=dia+"/"+mes+"/"+año;
+	return fechafinal;
+
+
+}
+
+function llenarTablasModulos(jsondatos,idmodulo,numerociclo,grupo)
+{
 	console.log(jsondatos);
 	console.log(jsondatos[0]['idHorarios']);
 
 	var cantidad=Object.keys(jsondatos).length;
 	var dia;
+
 	
+	$("#"+idmodulo+"datos").html(numerociclo+"° Ciclo");
+	$("#"+idmodulo+"fecha").html(fecha());
+	$("#"+idmodulo+"grupo").html(grupo)
 	for(i=0;i<cantidad;i++)
 	{
 		var hinicio=parseInt(jsondatos[i]['hora'].substr(0,2));
@@ -289,6 +292,14 @@ function llenarTablasModulos(jsondatos,idmodulo)
 			hinicio++;
 			contadormodulo++;
 		}
+
+		camposModulo[contadormodulo]="#"+idmodulo+"datos";
+		contadormodulo++;
+		camposModulo[contadormodulo]="#"+idmodulo+"grupo";
+		contadormodulo++;
+		camposModulo[contadormodulo]="#"+idmodulo+"fecha";
+		contadormodulo++;
+
 	}
 	canhoras=0;
 }
@@ -535,7 +546,6 @@ function limpiarCajas(camposllenos){
 		$(camposllenos[contador]).removeClass("pintado-false");
 		contador++;
 	}
-
 	contador=0;
 
 }

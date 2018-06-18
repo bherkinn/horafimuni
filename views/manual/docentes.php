@@ -11,6 +11,7 @@
 	<!-- **************************************CSS************************************* -->
 	<link rel="stylesheet" type="text/css" href="../../librerias/bootstrap4/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/css/principal.css">
+	<link rel="stylesheet" type="text/css" href="../../librerias/css/comun-tablas.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/css/docentes.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	<link rel="stylesheet" type="text/css" href="../../librerias/select2/css/select2.min.css">
